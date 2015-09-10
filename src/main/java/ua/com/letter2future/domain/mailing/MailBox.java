@@ -1,4 +1,4 @@
-package ua.com.letter2future.mailing;
+package ua.com.letter2future.domain.mailing;
 
 import org.springframework.data.repository.CrudRepository;
 

@@ -1,4 +1,4 @@
-package ua.com.letter2future.auth;
+package ua.com.letter2future.domain.auth;
 
 
 import javax.persistence.Entity;

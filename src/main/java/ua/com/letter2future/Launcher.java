@@ -5,12 +5,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import ua.com.letter2future.auth.User;
-import ua.com.letter2future.auth.VerificationRecord;
-import ua.com.letter2future.auth.VerificationRecordRepository;
-import ua.com.letter2future.auth.UserRepository;
-import ua.com.letter2future.mailing.Letter;
-import ua.com.letter2future.mailing.MailBox;
+import ua.com.letter2future.domain.auth.User;
+import ua.com.letter2future.domain.auth.VerificationRecord;
+import ua.com.letter2future.domain.auth.VerificationRecordRepository;
+import ua.com.letter2future.domain.auth.UserRepository;
+import ua.com.letter2future.domain.mailing.Letter;
+import ua.com.letter2future.domain.mailing.MailBox;
 
 import java.time.LocalDate;
 

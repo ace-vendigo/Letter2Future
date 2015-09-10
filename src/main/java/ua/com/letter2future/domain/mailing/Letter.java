@@ -1,6 +1,6 @@
-package ua.com.letter2future.mailing;
+package ua.com.letter2future.domain.mailing;
 
-import ua.com.letter2future.auth.User;
+import ua.com.letter2future.domain.auth.User;
 
 import javax.persistence.*;
 import java.time.LocalDate;
