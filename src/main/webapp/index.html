@@ -5,21 +5,27 @@
     <link href="css/main.css" rel="stylesheet" type="text/css">
     <link href="lib/bootstrap/css/bootstrap.min.css">
     <script src="lib/jquery-2.1.4.min.js"></script>
-    <script src="lib/angular.min.js"></script>
+    <script src="lib/angular/angular.min.js"></script>
+    <script src="lib/angular/angular-route.min.js"></script>
     <script src="lib/bootstrap/js/bootstrap.min.js"></script>
     <script src="js/controller/hello.js"></script>
     <script src="js/app.js"></script>
     <style type="text/css">
-        /*[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {*/
-            /*display: none !important;*/
-        /*}*/
+        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+            display: none !important;
+        }
     </style>
 </head>
-<body ng-controller="hello">
+<body ng-controller="hello" class="ng-cloak">
     <header>
+        <nav>
+           <a href="#/">Home</a>
+           <a href="#/login">Login</a>
+            <a ng-show="authenticated" href="" ng-click="logout()">Log out</a>
+        </nav>
         <h1>Hi there! Lets send message to future!</h1>
     </header>
-    <section>
+    <section ng-view class="container">
         {{ message }}
         <a href="#">Account</a>
     </section>
