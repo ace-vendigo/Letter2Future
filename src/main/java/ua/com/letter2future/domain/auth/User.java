@@ -1,10 +1,7 @@
 package ua.com.letter2future.domain.auth;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 
 @Entity
@@ -13,10 +10,20 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @Column
     private String name;
+
+    @Column
     private String nickname;
+
+    @Column
     private String email;
+
+    @Column
     private String password;
+
+    @Column
     private Boolean isEmailVerified;
 
     protected User() {}

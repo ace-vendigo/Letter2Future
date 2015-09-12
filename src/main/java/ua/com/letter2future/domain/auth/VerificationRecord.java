@@ -12,6 +12,8 @@ public class VerificationRecord {
     @ManyToOne
     @JoinColumn(name = "forumId")
     private User user;
+
+    @Column
     private String verificationCode;
 
     protected VerificationRecord() {}

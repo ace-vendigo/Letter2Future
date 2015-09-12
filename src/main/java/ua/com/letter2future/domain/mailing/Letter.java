@@ -14,9 +14,17 @@ public class Letter {
 
     @ManyToOne
     private  User author;
+
+    @Column
     private String subject;
+
+    @Column
     private String body;
+
+    @Column
     private LocalDate creationDate;
+
+    @Column
     private LocalDate reveiveDate;
 
     protected Letter() {}
