@@ -1,4 +1,4 @@
-package ua.com.letter2future.domain.auth;
+package ua.com.letter2future.verification;
 
 import org.springframework.data.repository.CrudRepository;
 
