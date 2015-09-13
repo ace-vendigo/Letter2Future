@@ -1,4 +1,4 @@
-package ua.com.letter2future.domain.auth;
+package ua.com.letter2future.user;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;

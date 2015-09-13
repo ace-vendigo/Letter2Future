@@ -1,6 +1,6 @@
-package ua.com.letter2future.domain.auth;
+package ua.com.letter2future.verification;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import ua.com.letter2future.user.User;
 
 import java.util.Random;
 
