@@ -1,6 +1,6 @@
-function helloController($scope, $http) {
+app.controller("helloController", function ($scope, $http) {
     $scope.message = "Hello from Ctrl";
     $http.get("/user/info").success(function (data) {
         $scope.greeting = data;
     })
-}
+});

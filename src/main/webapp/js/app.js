@@ -1,17 +1,17 @@
-(function () {
-    var app = angular.module("letter2future", ["ngRoute"])
-        .config(function ($routeProvider, $httpProvider) {
-            $routeProvider.when("/", {
-                templateUrl: "home.html",
-                controller: "hello"
-                }).when("/login", {
-                    templateUrl: "login.html",
-                    controller: "navigation"
-                }).otherwise("/");
+var app = angular.module("letter2future", ["ngRoute"]);
 
-            $httpProvider.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
-        })
-        .controller("hello", helloController)
-        .controller("navigation", function () {
-        });
-})();
+app.config(function ($routeProvider, $httpProvider) {
+    $routeProvider.when("/", {
+        templateUrl: "home.html",
+        controller: "hello"
+    }).when("/login", {
+        templateUrl: "login.html",
+        controller: "navigation"
+    }).otherwise("/");
+
+    $httpProvider.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
+});
+
+app.controller("navigation", function () {
+});
+
