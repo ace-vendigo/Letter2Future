@@ -1,5 +1,5 @@
 (function () {
-    var app = angular.module("letter", ["ngRoute"])
+    var app = angular.module("letter2future", ["ngRoute"])
         .config(function ($routeProvider, $httpProvider) {
             $routeProvider.when("/", {
                 templateUrl: "home.html",
