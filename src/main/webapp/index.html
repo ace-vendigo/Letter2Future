@@ -1,32 +1,28 @@
 <!DOCTYPE html>
-<html ng-app="letter2future">
+<html>
 <head lang="en">
     <title>Letter to Future</title>
-
-    <!--Libs-->
-    <script src="/webjars/jquery/2.1.4/jquery.js"></script>
-    <script src="/webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <link href="/webjars/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <script src="/webjars/angularjs/1.4.8/angular.js"></script>
-    <script src="/webjars/angularjs/1.4.8/angular-route.js"></script>
-
-    <!-- App -->
-    <script src="js/app.js"></script>
-    <script src="js/controller/hello.js"></script>
-
+    <style type="text/css">
+        [ng\:cloak], [ng-cloak], .ng-cloak {
+            display: none !important;
+        }
+    </style>
 </head>
-<body ng-controller="hello">
-    <header>
-        <nav>
-           <a href="#/">Home</a>
-           <a href="#/login">Login</a>
-            <a ng-show="authenticated" href="" ng-click="logout()">Log out</a>
-        </nav>
-        <h1>Letter to future</h1>
-    </header>
-    <section ng-view class="container">
-        {{ message }}
-        <a href="#">Account</a>
-    </section>
+<body ng-app="letter2future">
+
+<div class="container">
+    <div class="ng-cloak" ng-cloak ng-controller="helloController">
+        <h1>Letter to Future</h1>
+        <p class="lead">Mesage from Angular: {{message}}</p>
+    </div>
+</div>
+
+<script src="/webjars/jquery/2.1.4/jquery.js"></script>
+<script src="/webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="/webjars/angularjs/1.4.8/angular.js"></script>
+<script src="/webjars/angularjs/1.4.8/angular-route.js"></script>
+<script src="js/app.js"></script>
+<script src="js/controller/helloController.js"></script>
 </body>
 </html>
