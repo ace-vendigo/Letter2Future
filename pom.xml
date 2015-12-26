@@ -49,6 +49,12 @@
             <artifactId>hsqldb</artifactId>
             <version>${hsql.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>angularjs</artifactId>
+            <version>${angular.version}</version>
+        </dependency>
     </dependencies>
 
     <build>

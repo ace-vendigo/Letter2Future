@@ -9,17 +9,19 @@
         }
     </style>
 </head>
-<body ng-app="letter2future">
+<body ng-app="letter2future" ng-cloak class="ng-cloak">
 
-<div class="container">
-    <div class="ng-cloak" ng-cloak ng-controller="helloController">
-        <h1>Letter to Future</h1>
-        <p class="lead">Mesage from Angular: {{message}}</p>
-    </div>
+<div ng-controller="navigationController" class="container">
+    <ul class="nav nav-pills" role="tablist">
+        <li ng-class="{active:tab('home')}"><a href="#/">Home</a></li>
+        <li><a href="#/login">Sign in</a></li>
+        <li ng-show="authenticated"><a href="" ng-click="logout()">Logout</a></li>
+    </ul>
 </div>
+<div ng-view class="container"></div>
 
 <script src="js/angular-bootstrap.js"></script>
 <script src="js/app.js"></script>
-<script src="js/helloController.js"></script>
+<script src="js/navigationController.js"></script>
 </body>
 </html>
