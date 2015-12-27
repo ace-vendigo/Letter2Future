@@ -1,8 +1,7 @@
-l2fApp.controller('navigationController', ['$rootScope', '$scope', '$http',
-    '$location', '$route',
+l4fApp.controller('navigationController', ['$rootScope', '$scope', '$http', '$location', '$route',
     function ($rootScope, $scope, $http, $location, $route) {
 
-        $scope.greeting = 'Hello, User';
+        $rootScope.greeting = 'Hello, User!';
 
         $scope.tab = function(route) {
             return $route.current && route === $route.current.controller;
@@ -16,7 +15,7 @@ l2fApp.controller('navigationController', ['$rootScope', '$scope', '$http',
                     + credentials.password)
             } : {};
 
-            $http.get('user/', {
+            $http.get('user', {
                 headers : headers
             }).success(function(data) {
                 $rootScope.authenticated = !!data.name;
@@ -51,7 +50,7 @@ l2fApp.controller('navigationController', ['$rootScope', '$scope', '$http',
             $http.post('logout', {}).success(function() {
                 $rootScope.authenticated = false;
                 $location.path("/");
-            }).error(function(data) {
+            }).error(function() {
                 console.log("Logout failed");
                 $rootScope.authenticated = false;
             });
