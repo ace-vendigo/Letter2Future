@@ -1,6 +1,8 @@
-app.controller('navigationController', ['$rootScope', '$scope', '$http',
+l2fApp.controller('navigationController', ['$rootScope', '$scope', '$http',
     '$location', '$route',
     function ($rootScope, $scope, $http, $location, $route) {
+
+        $scope.greeting = 'Hello, User';
 
         $scope.tab = function(route) {
             return $route.current && route === $route.current.controller;
@@ -14,7 +16,7 @@ app.controller('navigationController', ['$rootScope', '$scope', '$http',
                     + credentials.password)
             } : {};
 
-            $http.get('user/principal', {
+            $http.get('user/', {
                 headers : headers
             }).success(function(data) {
                 $rootScope.authenticated = !!data.name;
