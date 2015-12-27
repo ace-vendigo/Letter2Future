@@ -6,9 +6,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.security.Principal;
 
 @RestController
-@RequestMapping("/user")
 public class UserController {
-    @RequestMapping("/")
+    @RequestMapping("/user")
     public Principal user(Principal user) {
         return user;
     }
