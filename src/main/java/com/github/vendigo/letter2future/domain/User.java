@@ -1,4 +1,4 @@
-package com.github.vendigo.letter2future.user;
+package com.github.vendigo.letter2future.domain;
 
 import javax.persistence.*;
 
@@ -10,7 +10,7 @@ public class User {
     private Long id;
 
     @Column(nullable = false)
-    private String name;
+    private String username;
 
     @Column(nullable = false)
     private String email;
@@ -21,11 +21,11 @@ public class User {
     @Column
     private boolean isEmailVerified;
 
-    User() {
+    public User() {
     }
 
-    public User(String name, String email, String password, boolean isEmailVerified) {
-        this.name = name;
+    public User(String username, String email, String password, boolean isEmailVerified) {
+        this.username = username;
         this.email = email;
         this.password = password;
         this.isEmailVerified = isEmailVerified;
@@ -35,8 +35,8 @@ public class User {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
     public String getEmail() {
@@ -49,5 +49,11 @@ public class User {
 
     public boolean isEmailVerified() {
         return isEmailVerified;
+    }
+
+    @Override
+    public String toString() {
+        return "User: [ username: " + username + ", email: " + email
+                + ", isEmailVerified:" + isEmailVerified + "]";
     }
 }

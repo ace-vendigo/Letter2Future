@@ -7,6 +7,9 @@ l4fApp.config(['$routeProvider', '$httpProvider', function($routeProvider, $http
     }).when('/login', {
         templateUrl: 'login.html',
         controller: 'navigationController'
+    }).when("/register", {
+        templateUrl: 'register.html',
+        controller: 'navigationController'
     }).otherwise('/');
 
     $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';

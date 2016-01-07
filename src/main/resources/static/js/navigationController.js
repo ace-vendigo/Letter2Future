@@ -1,53 +1,42 @@
 l4fApp.controller('navigationController', ['$rootScope', '$scope', '$http', '$location', '$route',
     function ($rootScope, $scope, $http, $location, $route) {
 
-        $rootScope.greeting = 'Hello, User!';
+        $rootScope.greeting = 'Hello,';
+        $scope.credentials = {};
+
+        $scope.errorOccurred = function (errorText, nextLocation) {
+            $scope.error = errorText;
+            if (nextLocation) {
+                $location.path(nextLocation);
+            }
+        }
 
         $scope.tab = function(route) {
             return $route.current && route === $route.current.controller;
         };
 
         var authenticate = function(credentials, callback) {
-
-            var headers = credentials ? {
-                authorization : "Basic "
-                + btoa(credentials.username + ":"
-                    + credentials.password)
-            } : {};
-
-            $http.get('user', {
-                headers : headers
-            }).success(function(data) {
-                $rootScope.authenticated = !!data.name;
-                callback && callback($rootScope.authenticated);
-            }).error(function() {
-                $rootScope.authenticated = false;
-                callback && callback(false);
-            });
-
-        };
-
-        authenticate();
-
-        $scope.credentials = {};
-        $scope.login = function() {
-            authenticate($scope.credentials, function(authenticated) {
-                if (authenticated) {
+            $http.post("/user/login", $scope.credentials).success(function (data) {
+                if (data.message) {
                     console.log("Login succeeded");
                     $location.path("/");
                     $scope.error = false;
                     $rootScope.authenticated = true;
+                    $rootScope.currentUser = data.currentUser;
                 } else {
                     console.log("Login failed");
-                    $location.path("/login");
-                    $scope.error = true;
                     $rootScope.authenticated = false;
+                    $scope.errorOccurred(data.error, "/login");
                 }
-            })
+            });
+        };
+
+        $scope.login = function() {
+            authenticate($scope.credentials);
         };
 
         $scope.logout = function() {
-            $http.post('logout', {}).success(function() {
+            $http.post("/user/logout", {}).success(function() {
                 $rootScope.authenticated = false;
                 $location.path("/");
             }).error(function() {
@@ -55,5 +44,16 @@ l4fApp.controller('navigationController', ['$rootScope', '$scope', '$http', '$lo
                 $rootScope.authenticated = false;
             });
         }
+        $scope.register = function () {
+//            validateRegistrationForm();
+            $http.post("/user/register", $scope.credentials).success(function (data) {
+                if (data.error) {
+                    $scope.errorOccurred(data.error);
+                }
+                else {
+                    $location.path("/login");
+                }
+            })
+        };
 
     }]);
