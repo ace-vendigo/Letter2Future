@@ -1,7 +1,6 @@
 package com.github.vendigo.letter2future.service;
 
 import com.github.vendigo.letter2future.domain.User;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 

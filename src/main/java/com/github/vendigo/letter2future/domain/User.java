@@ -12,7 +12,7 @@ public class User {
     @Column(nullable = false)
     private String username;
 
-    @Column(nullable = false)
+    @Column(unique=true, nullable = false)
     private String email;
 
     @Column(nullable = false)
@@ -29,6 +29,10 @@ public class User {
         this.email = email;
         this.password = password;
         this.isEmailVerified = isEmailVerified;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Long getId() {
@@ -53,7 +57,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User: [ username: " + username + ", email: " + email
+        return "User: [ username: " + username + ", email: " + email + " password: " + password
                 + ", isEmailVerified:" + isEmailVerified + "]";
     }
 }
