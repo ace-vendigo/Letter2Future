@@ -25,10 +25,6 @@ import java.io.IOException;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-<<<<<<< bcf2638b0cf2f53adf7f2fa8f10d13c6b24c2326
-<<<<<<< 7a83e6f432226007973281bcf0c1f18c93c5046e
-=======
->>>>>>> Registration and authentication
         http
                 .authorizeRequests()
                 .antMatchers(
@@ -42,13 +38,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/user/logout"
                 )
                 .permitAll().anyRequest()
-<<<<<<< bcf2638b0cf2f53adf7f2fa8f10d13c6b24c2326
-=======
-        http.httpBasic().and().authorizeRequests()
-                .antMatchers("/index.html", "/home.html", "/login.html", "/", "/user/register").permitAll().anyRequest()
->>>>>>> Registration: add user service
-=======
->>>>>>> Registration and authentication
                 .authenticated().and().csrf()
                 .csrfTokenRepository(csrfTokenRepository()).and()
                 .addFilterAfter(csrfHeaderFilter(), CsrfFilter.class);
