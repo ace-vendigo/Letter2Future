@@ -29,9 +29,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(
                         "/index.html",
-                        "/home.html",
-                        "/login.html",
-                        "/register.html",
+                        "/partials/home.html",
+                        "/partials/login.html",
+                        "/partials/register.html",
                         "/",
                         "/user/register",
                         "/user/login",

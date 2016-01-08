@@ -2,14 +2,14 @@ var l4fApp = angular.module("letter2future", ['ngRoute']);
 
 l4fApp.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider) {
     $routeProvider.when('/', {
-        templateUrl: 'home.html',
+        templateUrl: 'partials/home.html',
         controller: 'navigationController'
     }).when('/login', {
-        templateUrl: 'login.html',
+        templateUrl: 'partials/login.html',
         controller: 'navigationController'
     }).when("/register", {
-        templateUrl: 'register.html',
-        controller: 'navigationController'
+        templateUrl: 'partials/register.html',
+        controller: 'registrationController'
     }).otherwise('/');
 
     $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
