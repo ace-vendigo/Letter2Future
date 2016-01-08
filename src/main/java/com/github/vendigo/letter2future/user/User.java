@@ -1,4 +1,4 @@
-package com.github.vendigo.letter2future.domain;
+package com.github.vendigo.letter2future.user;
 
 import javax.persistence.*;
 
@@ -19,19 +19,14 @@ public class User {
     private String password;
 
     @Column
-    private boolean isEmailVerified;
+    private Boolean isEmailVerified;
 
     public User() {
     }
 
-    public User(String username, String email, String password, boolean isEmailVerified) {
+    public User(String username, String email, String password) {
         this.username = username;
         this.email = email;
-        this.password = password;
-        this.isEmailVerified = isEmailVerified;
-    }
-
-    public void setPassword(String password) {
         this.password = password;
     }
 

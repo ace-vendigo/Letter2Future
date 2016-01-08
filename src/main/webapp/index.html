@@ -2,7 +2,7 @@
 <html>
 <head lang="en">
     <title>Letter to Future</title>
-    <link href="css/angular-bootstrap.css" rel="stylesheet">
+    <link href="webjars/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
     <style type="text/css">
         [ng\:cloak], [ng-cloak], .ng-cloak {
             display: none !important;
@@ -21,7 +21,15 @@
 </div>
 <div ng-view class="container"></div>
 
-<script src="js/angular-bootstrap.js" type="text/javascript"></script>
+<!--Dependencies-->
+<!--Bootstrap-->
+<script src="webjars/jquery/2.1.4/jquery.js" type="text/javascript"></script>
+<script src="webjars/bootstrap/3.3.6/js/bootstrap.js" type="text/javascript"></script>
+<!--Angular-->
+<script src="webjars/angularjs/1.4.8/angular.js" type="text/javascript"></script>
+<script src="webjars/angularjs/1.4.8/angular-route.js" type="text/javascript"></script>
+<script src="webjars/angularjs/1.4.8/angular-cookies.js" type="text/javascript"></script>
+<!--Application-->
 <script src="js/app.js"></script>
 <script src="js/navigationController.js"></script>
 <script src="js/registrationController.js"></script>

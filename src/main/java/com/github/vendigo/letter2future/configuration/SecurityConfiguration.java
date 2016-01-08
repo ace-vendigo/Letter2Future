@@ -28,6 +28,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers(
+                        "/resources/**",
+                        "/webjars/**",
                         "/index.html",
                         "/partials/home.html",
                         "/partials/login.html",

@@ -1,7 +1,6 @@
-package com.github.vendigo.letter2future.service;
+package com.github.vendigo.letter2future.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import com.github.vendigo.letter2future.domain.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
