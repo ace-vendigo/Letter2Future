@@ -9,7 +9,7 @@ l4fApp.controller('navigationController', ['$rootScope', '$scope', '$http', '$lo
             if (nextLocation) {
                 $location.path(nextLocation);
             }
-        }
+        };
 
         $scope.tab = function(route) {
             return $route.current && route === $route.current.controller;
@@ -43,17 +43,5 @@ l4fApp.controller('navigationController', ['$rootScope', '$scope', '$http', '$lo
                 console.log("Logout failed");
                 $rootScope.authenticated = false;
             });
-        }
-        $scope.register = function () {
-//            validateRegistrationForm();
-            $http.post("/user/register", $scope.credentials).success(function (data) {
-                if (data.error) {
-                    $scope.errorOccurred(data.error);
-                }
-                else {
-                    $location.path("/login");
-                }
-            })
         };
-
     }]);

@@ -1,18 +1,18 @@
 <div class="alert alert-danger" ng-show="error">
     {{ error }}
 </div>
-<form role="form" ng-submit="register()">
+<form role="form" ng-submit="register()" name="registrationForm" novalidate>
     <div class="form-group">
-        <label for="username">Username:</label> <input type="text"
-                                                       class="form-control" id="username" name="username" ng-model="credentials.username"/>
+        <label for="username">Username:</label>
+        <input type="text" class="form-control" id="username" name="username" ng-model="credentials.username"/>
     </div>
     <div class="form-group">
-        <label for="email">Email:</label> <input type="email"
-                                                       class="form-control" id="email" name="password" ng-model="credentials.email"/>
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" id="email" name="password" ng-model="credentials.email"/>
     </div>
     <div class="form-group">
-        <label for="password">Password:</label> <input type="password"
-                                                       class="form-control" id="password" name="password" ng-model="credentials.password"/>
+        <label for="password">Password:</label>
+        <input type="password" class="form-control" id="password" name="password" ng-model="credentials.password"/>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
