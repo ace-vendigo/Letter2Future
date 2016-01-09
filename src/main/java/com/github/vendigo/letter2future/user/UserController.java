@@ -34,7 +34,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ResponseEntity<Map<String, String>> loginUser(@RequestBody User user, HttpServletRequest request) {
+    public ResponseEntity<Map<String, Object>> loginUser(@RequestBody User user, HttpServletRequest request) {
         return new ResponseEntity<>(userService.loginUser(user, request), HttpStatus.OK);
     }
 

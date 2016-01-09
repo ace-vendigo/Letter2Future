@@ -10,6 +10,9 @@ l4fApp.config(['$routeProvider', '$httpProvider', function($routeProvider, $http
     }).when("/register", {
         templateUrl: 'partials/register.html',
         controller: 'registrationController'
+    }).when("/letter/new", {
+        templateUrl: 'partials/new-letter.html',
+        controller: 'letterController'
     }).otherwise('/');
 
     $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';

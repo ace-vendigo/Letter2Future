@@ -30,14 +30,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(
                         "/resources/**",
                         "/webjars/**",
-                        "/index.html",
-                        "/partials/home.html",
-                        "/partials/login.html",
-                        "/partials/register.html",
                         "/",
-                        "/user/register",
-                        "/user/login",
-                        "/user/logout"
+                        "/index.html",
+                        "/partials/**",
+                        "/user/**",
+                        "/letter/**" //TODO Secure access to letters
                 )
                 .permitAll().anyRequest()
                 .authenticated().and().csrf()

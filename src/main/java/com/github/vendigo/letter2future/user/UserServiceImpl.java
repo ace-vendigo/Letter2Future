@@ -39,19 +39,20 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public Map<String, String> loginUser(User user, HttpServletRequest request) {
-        User u = userRepository.findByUsername(user.getUsername());
-        Map<String, String> responseMessage = new HashMap<>();
+    public Map<String, Object> loginUser(User userToLogin, HttpServletRequest request) {
+        User userFromDb = userRepository.findByUsername(userToLogin.getUsername());
+        Map<String, Object> responseMessage = new HashMap<>();
 
-        if (u == null) {
+        if (userFromDb == null) {
             responseMessage.put("error", "User not found!");
         }
         else {
-            if (user.getPassword().equals(u.getPassword())){
+            if (userToLogin.getPassword().equals(userFromDb.getPassword())){
                 responseMessage.put("message", "Successfully logged in");
                 HttpSession session = request.getSession(true);
-                session.setAttribute("currentUser", u.getUsername());
-                responseMessage.put("currentUser", u.getUsername());
+                User userWithoutPassword = new User(userFromDb);
+                session.setAttribute("currentUser", userWithoutPassword);
+                responseMessage.put("currentUser", userWithoutPassword);
             }
             else {
                 responseMessage.put("error", "Incorrect password!");

@@ -30,6 +30,17 @@ public class User {
         this.password = password;
     }
 
+    /**
+     * Clone constructor to create the exact User but without password
+     * @param user - object to clone
+     */
+    public User(User user) {
+        this.id = user.getId();
+        this.username = user.getUsername();
+        this.email = user.getEmail();
+        this.isEmailVerified = user.isEmailVerified();
+    }
+
     public Long getId() {
         return id;
     }
@@ -46,7 +57,7 @@ public class User {
         return password;
     }
 
-    public boolean isEmailVerified() {
+    public Boolean isEmailVerified() {
         return isEmailVerified;
     }
 

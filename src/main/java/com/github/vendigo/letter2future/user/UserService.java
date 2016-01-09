@@ -5,6 +5,6 @@ import java.util.Map;
 
 public interface UserService {
     Map<String, String> registerUser(User user);
-    Map<String, String> loginUser(User user, HttpServletRequest request);
+    Map<String, Object> loginUser(User user, HttpServletRequest request);
     Map<String, String> logoutUser(HttpServletRequest request);
 }
