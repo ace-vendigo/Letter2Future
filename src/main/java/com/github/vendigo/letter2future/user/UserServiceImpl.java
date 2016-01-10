@@ -28,6 +28,8 @@ public class UserServiceImpl implements UserService{
         Map<String, String> responseMessage = new HashMap<>();
 
         if (u == null) {
+            // Create user with encrypted password
+            user = new User(user.getUsername(), user.getEmail(), encrypt(user.getPassword()));
             userRepository.save(user);
             responseMessage.put("message", "User added!");
         }
@@ -47,7 +49,7 @@ public class UserServiceImpl implements UserService{
             responseMessage.put("error", "User not found!");
         }
         else {
-            if (userToLogin.getPassword().equals(userFromDb.getPassword())){
+            if (checkPassword(userToLogin.getPassword(), userFromDb.getPassword())){
                 responseMessage.put("message", "Successfully logged in");
                 HttpSession session = request.getSession(true);
                 User userWithoutPassword = new User(userFromDb);
@@ -77,5 +79,9 @@ public class UserServiceImpl implements UserService{
 
     private String encrypt(String plainPassword) {
         return UserServiceImpl.encoder.encode(plainPassword);
+    }
+
+    private boolean checkPassword(String rawPassword, String encodedPassword) {
+        return encoder.matches(rawPassword, encodedPassword);
     }
 }
