@@ -1,9 +1,13 @@
 package com.github.vendigo.letter2future.letter;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.github.vendigo.letter2future.user.User;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 public class Letter {
@@ -12,27 +16,30 @@ public class Letter {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne()
+    @ManyToOne(optional = false)
     private User user;
-
     @Column(nullable = false)
+    @Size(min = 1, max = 100)
     private String subject;
-
     @Column(nullable = false)
+    @Size(min = 1, max = 3000)
     private String body;
+    @Column
+    @Temporal(TemporalType.DATE)
+    private Date sendDate = new Date();
+    @Column
+    @Enumerated(EnumType.STRING)
+    private DepartureDelay departureDelay;
+    @Column
+    @Temporal(TemporalType.DATE)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+    private Date desiredReceiptDate;
 
     @Column
-    private LocalDate sendDate;
-
-    public Letter() {
-    }
-
-    public Letter(User user, String subject, String body, LocalDate sendDate) {
-        this.user = user;
-        this.subject = subject;
-        this.body = body;
-        this.sendDate = sendDate;
-    }
+    @Temporal(TemporalType.DATE)
+    private Date actualReceiptDate;
+    @Column
+    private boolean received = false;
 
     public Long getId() {
         return id;
@@ -50,8 +57,32 @@ public class Letter {
         return body;
     }
 
-    public LocalDate getSendDate() {
+    public Date getSendDate() {
         return sendDate;
+    }
+
+    public DepartureDelay getDepartureDelay() {
+        return departureDelay;
+    }
+
+    public Date getDesiredReceiptDate() {
+        return desiredReceiptDate;
+    }
+
+    public Date getActualReceiptDate() {
+        return actualReceiptDate;
+    }
+
+    public boolean isReceived() {
+        return received;
+    }
+
+    public void setActualReceiptDate(Date actualReceiptDate) {
+        this.actualReceiptDate = actualReceiptDate;
+    }
+
+    public void setReceived(boolean received) {
+        this.received = received;
     }
 
     @Override
@@ -62,6 +93,10 @@ public class Letter {
                 ", subject='" + subject + '\'' +
                 ", body='" + body + '\'' +
                 ", sendDate=" + sendDate +
+                ", departureDelay=" + departureDelay +
+                ", desiredReceiptDate=" + desiredReceiptDate +
+                ", actualReceiptDate=" + actualReceiptDate +
+                ", received=" + received +
                 '}';
     }
 }
