@@ -1,4 +1,4 @@
-var l4fApp = angular.module("letter2future", ['ngRoute']);
+var l4fApp = angular.module("letter2future", ['ngRoute', 'ngStorage']);
 
 l4fApp.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider) {
     $routeProvider.when('/', {

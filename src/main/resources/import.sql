@@ -1,1 +1,1 @@
-INSERT INTO USER (USERNAME, PASSWORD, EMAIL) VALUES ('user', 'pass', 'user@mail.com')
+INSERT INTO USER (USERNAME, PASSWORD, EMAIL) VALUES ('user', '$2a$10$fuEemWMNIwcZtfTa3orMPuaxQVX9rJJ2C//W3A3iLMpQXRNZg8fgW', 'user@mail.com')
