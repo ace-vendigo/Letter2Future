@@ -1,13 +1,20 @@
 'use strict';
 (function() {
-  angular.module('L2F.Common').controller('MainController', MainController);
+  angular.module('L2F.Common').controller('MainController', ['AuthService', MainController]);
 
-  function MainController() {
-      var auth = this;
-      auth.authenticated = false;
+  function MainController(AuthService) {
+      var main = this;
 
-      auth.logout = function() {
-          console.log("Logout");
-      }
+      AuthService.authenticate();
+
+      main.credentials = {};
+
+      main.login = function() {
+          AuthService.login(main.credentials);
+      };
+
+      main.logout = function() {
+          AuthService.logout();
+      };
   }
 })();

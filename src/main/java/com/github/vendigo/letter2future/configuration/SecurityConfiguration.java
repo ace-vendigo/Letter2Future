@@ -30,10 +30,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     DataSource dataSource;
 
-    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+    /*public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication().dataSource(dataSource)
                 .usersByUsernameQuery("select username, password, active from USERS where username=?");
-    }
+    }*/
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -44,6 +44,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/resources/**",
                         "/webjars/**",
                         "/",
+                        "/user",
                         "/login",
                         "/partials/public/**"
                 ).permitAll().

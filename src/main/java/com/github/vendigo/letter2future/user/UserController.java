@@ -18,7 +18,7 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @RequestMapping("/current")
+    @RequestMapping
     public Principal user(Principal user) {
         return user;
     }

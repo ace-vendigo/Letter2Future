@@ -15,15 +15,16 @@
     <script src="js/letter2Future.js"></script>
     <script src="js/common/Common.js"></script>
     <script src="js/common/mainController.js"></script>
+    <script src="js/common/authService.js"></script>
 </head>
 <body>
 
 <div ng-controller="MainController as main" class="container">
     <ul class="nav nav-pills" role="tablist">
         <li><a href="#/">Home</a></li>
-        <li ng-show="!main.authenticated"><a href="#/login">Sign in</a></li>
-        <li ng-show="!main.authenticated"><a href="#/register">Sign up</a></li>
-        <li ng-show="main.authenticated"><a href="" ng-click="main.logout()">Logout</a></li>
+        <li ng-show="!authenticated"><a href="#/login">Sign in</a></li>
+        <li ng-show="!authenticated"><a href="#/register">Sign up</a></li>
+        <li ng-show="authenticated"><a href="" ng-click="main.logout()">Logout</a></li>
     </ul>
 </div>
 <div ng-view class="container">
