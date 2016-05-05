@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.util.Map;
 
@@ -16,30 +15,16 @@ import java.util.Map;
 @RequestMapping("/user")
 public class UserController {
 
+    @Autowired
     UserService userService;
 
-    @Autowired
-    UserController(UserService userService) {
-        this.userService = userService;
-    }
-
-    @RequestMapping("/")
+    @RequestMapping("/current")
     public Principal user(Principal user) {
         return user;
     }
 
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ResponseEntity<Map<String, String>> registerUser(@RequestBody User newUser) {
-        return new ResponseEntity<>(userService.registerUser(newUser), HttpStatus.OK);
-    }
-
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ResponseEntity<Map<String, Object>> loginUser(@RequestBody User user, HttpServletRequest request) {
-        return new ResponseEntity<>(userService.loginUser(user, request), HttpStatus.OK);
-    }
-
-    @RequestMapping(value = "/logout", method = RequestMethod.POST)
-    public ResponseEntity<Map<String, String>> logoutUser(HttpServletRequest request) {
-        return new ResponseEntity<>(userService.logoutUser(request), HttpStatus.OK);
+    @RequestMapping(value = "/new", method = RequestMethod.POST)
+    public ResponseEntity<Map<String, String>> createUser(@RequestBody User newUser) {
+        return new ResponseEntity<>(userService.createUser(newUser), HttpStatus.OK);
     }
 }

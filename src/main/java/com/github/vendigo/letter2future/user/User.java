@@ -1,5 +1,7 @@
 package com.github.vendigo.letter2future.user;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import javax.persistence.*;
 
 @Entity
@@ -19,7 +21,8 @@ public class User {
     private String password;
 
     @Column
-    private Boolean isEmailVerified;
+    private boolean active = false;
+
 
     public User() {
     }
@@ -28,17 +31,6 @@ public class User {
         this.username = username;
         this.email = email;
         this.password = password;
-    }
-
-    /**
-     * Clone constructor to create the exact User but without password
-     * @param user - object to clone
-     */
-    public User(User user) {
-        this.id = user.getId();
-        this.username = user.getUsername();
-        this.email = user.getEmail();
-        this.isEmailVerified = user.isEmailVerified();
     }
 
     public Long getId() {
@@ -57,18 +49,22 @@ public class User {
         return password;
     }
 
-    public Boolean isEmailVerified() {
-        return isEmailVerified;
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", isEmailVerified=" + isEmailVerified +
-                '}';
+        return new ToStringBuilder(this)
+                .append("id", id)
+                .append("username", username)
+                .append("email", email)
+                .append("password", password)
+                .append("active", active)
+                .toString();
     }
 }
