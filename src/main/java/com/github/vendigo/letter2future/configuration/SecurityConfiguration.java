@@ -40,6 +40,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception {
         http
                 .httpBasic().and()
+                .logout().logoutSuccessUrl("/").and()
                 .authorizeRequests()
                 .antMatchers(
                         "/resources/**",

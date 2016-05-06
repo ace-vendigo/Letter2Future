@@ -26,21 +26,26 @@
                     console.log("Login succeeded");
                     $location.path(URLs.home);
                     $rootScope.loginError = false;
+                    $rootScope.authenticated = true;
                 } else {
                     console.log("Login failed");
                     $location.path(URLs.login);
                     $rootScope.loginError = true;
+                    $rootScope.authenticated = false;
                 }
             });
         };
 
         auth.logout = function () {
-            $http.post(URLs.logout, {}).finally(
+            $http.post(URLs.logout, {}).success(
                 function () {
+                    console.log("Logout succeeded");
                     $rootScope.authenticated = false;
                     $location.path(URLs.home);
                 }
-            );
+            ).error(function(data) {
+                console.log("Logout failed");
+            });
         }
     }
 })();
