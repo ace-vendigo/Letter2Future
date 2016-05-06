@@ -1,7 +1,5 @@
 package com.github.vendigo.letter2future.user;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-
 import javax.persistence.*;
 
 @Entity
@@ -14,15 +12,17 @@ public class User {
     @Column(nullable = false)
     private String username;
 
-    @Column(unique=true, nullable = false)
+    @Column(unique = true, nullable = false)
     private String email;
 
     @Column(nullable = false)
     private String password;
 
     @Column
-    private boolean active = false;
+    private boolean active;
 
+    @Column
+    private String role;
 
     public User() {
     }
@@ -53,18 +53,7 @@ public class User {
         return active;
     }
 
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this)
-                .append("id", id)
-                .append("username", username)
-                .append("email", email)
-                .append("password", password)
-                .append("active", active)
-                .toString();
+    public String getRole() {
+        return role;
     }
 }

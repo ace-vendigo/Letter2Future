@@ -30,13 +30,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     DataSource dataSource;
 
-    /*public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.jdbcAuthentication().dataSource(dataSource)
-                .usersByUsernameQuery("select username, password, active from USERS where username=?");
-    }*/
-
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.jdbcAuthentication().dataSource(dataSource)
+                .usersByUsernameQuery("select username, password, active from user where username=?")
+                .authoritiesByUsernameQuery("select username, role from user where username=?");
+    }
+
+    public void configure(HttpSecurity http) throws Exception {
         http
                 .httpBasic().and()
                 .authorizeRequests()
@@ -46,8 +47,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/",
                         "/user",
                         "/login",
-                        "/partials/public/**"
-                ).permitAll().
+                        "/partials/public/**")
+                .permitAll().
                 anyRequest().authenticated().and().
                 csrf().csrfTokenRepository(csrfTokenRepository()).and()
                 .addFilterAfter(csrfHeaderFilter(), CsrfFilter.class);

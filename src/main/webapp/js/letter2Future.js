@@ -21,8 +21,8 @@
 
     l2FApp.constant('URLs', {
         home: '/',
-        currentUser: '/user',
-        logout: '/logout',
+        currentUser: 'user',
+        logout: 'logout',
         login: 'login'
     });
 
