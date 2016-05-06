@@ -8,11 +8,13 @@
 
     l2FApp.config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
         $routeProvider.when('/', {
-            templateUrl: 'partials/public/home.html'
+            templateUrl: 'partials/public/home.html',
+            controller: 'HomeController',
+            controllerAs: 'home'
         }).when('/login', {
             templateUrl: 'partials/public/login.html',
-            controller: 'MainController',
-            controllerAs: 'main'
+            controller: 'AuthController',
+            controllerAs: 'auth'
         }).otherwise('/');
 
         $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';

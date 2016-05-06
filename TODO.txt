@@ -1,2 +1,5 @@
-TODO: Check/Fix logout forbidden error (Occur if page is not reloaded before logout. Something with csrf token)
-TODO: Fix login/?logout not found error
+TODO:
+* Refactor HomeController, make it more sane. Introduce Service for providing data.
+
+Understand:
+* Why get request is vital for logout to work

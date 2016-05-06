@@ -45,10 +45,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(
                         "/resources/**",
                         "/webjars/**",
+                        "/partials/public/**",
                         "/",
-                        "/user",
-                        "/login",
-                        "/partials/public/**")
+                        "/news",
+                        "/user")
                 .permitAll().
                 anyRequest().authenticated().and().
                 csrf().csrfTokenRepository(csrfTokenRepository()).and()

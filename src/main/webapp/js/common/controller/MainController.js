@@ -9,10 +9,6 @@
 
       main.credentials = {};
 
-      main.login = function() {
-          AuthService.login(main.credentials);
-      };
-
       main.logout = function() {
           AuthService.logout();
       };
