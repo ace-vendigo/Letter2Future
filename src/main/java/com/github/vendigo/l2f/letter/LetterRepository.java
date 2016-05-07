@@ -1,4 +1,4 @@
-package com.github.vendigo.letter2future.letter;
+package com.github.vendigo.l2f.letter;
 
 import org.springframework.data.repository.CrudRepository;
 

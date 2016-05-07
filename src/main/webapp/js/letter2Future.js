@@ -3,7 +3,8 @@
 
     var l2FApp = angular.module('L2F', [
         'ngRoute',
-        'L2F.Common'
+        'L2F.Common',
+        'L2F.User'
     ]);
 
     l2FApp.config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
@@ -15,6 +16,10 @@
             templateUrl: 'partials/public/login.html',
             controller: 'AuthController',
             controllerAs: 'auth'
+        }).when('/register', {
+            templateUrl: 'partials/public/register.html',
+            controller: 'UserController',
+            controllerAs: 'user'
         }).otherwise('/');
 
         $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';

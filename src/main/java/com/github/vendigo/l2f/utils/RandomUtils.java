@@ -1,6 +1,6 @@
-package com.github.vendigo.letter2future.utils;
+package com.github.vendigo.l2f.utils;
 
-import com.github.vendigo.letter2future.letter.DepartureDelay;
+import com.github.vendigo.l2f.letter.DepartureDelay;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;

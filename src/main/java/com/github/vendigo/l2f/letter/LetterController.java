@@ -1,4 +1,4 @@
-package com.github.vendigo.letter2future.letter;
+package com.github.vendigo.l2f.letter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

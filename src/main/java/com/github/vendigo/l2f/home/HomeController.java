@@ -1,4 +1,4 @@
-package com.github.vendigo.letter2future.home;
+package com.github.vendigo.l2f.home;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

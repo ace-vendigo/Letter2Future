@@ -1,4 +1,4 @@
-package com.github.vendigo.letter2future.user;
+package com.github.vendigo.l2f.user;
 
 import java.util.Map;
 

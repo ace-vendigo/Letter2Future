@@ -1,12 +1,10 @@
-package com.github.vendigo.letter2future.letter;
+package com.github.vendigo.l2f.letter;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.github.vendigo.letter2future.user.User;
-import org.springframework.format.annotation.DateTimeFormat;
+import com.github.vendigo.l2f.user.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-import java.time.LocalDate;
 import java.util.Date;
 
 @Entity

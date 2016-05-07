@@ -1,4 +1,4 @@
-package com.github.vendigo.letter2future;
+package com.github.vendigo.l2f;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

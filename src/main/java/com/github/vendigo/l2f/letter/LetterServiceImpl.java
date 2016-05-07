@@ -1,6 +1,6 @@
-package com.github.vendigo.letter2future.letter;
+package com.github.vendigo.l2f.letter;
 
-import com.github.vendigo.letter2future.utils.RandomUtils;
+import com.github.vendigo.l2f.utils.RandomUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
