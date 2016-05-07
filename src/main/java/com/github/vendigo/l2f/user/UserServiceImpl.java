@@ -13,7 +13,7 @@ public class UserServiceImpl implements UserService {
     UserRepository userRepository;
 
     @Override
-    public Map<String, String> createUser(User user) {
-        return null;
+    public User createUser(User user) {
+        return userRepository.save(user);
     }
 }

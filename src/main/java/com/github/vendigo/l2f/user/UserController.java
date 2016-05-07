@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/user")
@@ -24,7 +23,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/new", method = RequestMethod.POST)
-    public ResponseEntity<Map<String, String>> createUser(@RequestBody User newUser) {
+    public ResponseEntity<User> createUser(@RequestBody User newUser) {
         return new ResponseEntity<>(userService.createUser(newUser), HttpStatus.OK);
     }
 }
