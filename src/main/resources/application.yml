@@ -1,0 +1,5 @@
+spring:
+  profiles:
+    active: prod
+  datasource:
+    url: jdbc:hsqldb:hsql://localhost:9001/dev;ifexist=true

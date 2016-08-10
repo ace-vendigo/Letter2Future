@@ -6,6 +6,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+
 import static org.springframework.util.Assert.notNull;
 
 @Service
@@ -30,7 +32,7 @@ public class LetterServiceImpl implements LetterService {
             notNull(letter.getDesiredReceiptDate());
             letter.setActualReceiptDate(letter.getDesiredReceiptDate());
         } else {
-            letter.setActualReceiptDate(randomUtils.generateRandomDate(letter.getDepartureDelay()));
+            letter.setActualReceiptDate(randomUtils.generateRandomDate(LocalDate.now(), letter.getDepartureDelay()));
         }
     }
 }

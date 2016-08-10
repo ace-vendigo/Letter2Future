@@ -1,11 +1,12 @@
 package com.github.vendigo.l2f.letter;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.github.vendigo.l2f.user.User;
+import com.google.common.base.MoreObjects;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.Objects;
 
 @Entity
 public class Letter {
@@ -23,19 +24,14 @@ public class Letter {
     @Size(min = 1, max = 3000)
     private String body;
     @Column
-    @Temporal(TemporalType.DATE)
-    private Date sendDate = new Date();
+    private LocalDate sendDate;
     @Column
     @Enumerated(EnumType.STRING)
     private DepartureDelay departureDelay;
     @Column
-    @Temporal(TemporalType.DATE)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-    private Date desiredReceiptDate;
-
+    private LocalDate desiredReceiptDate;
     @Column
-    @Temporal(TemporalType.DATE)
-    private Date actualReceiptDate;
+    private LocalDate actualReceiptDate;
     @Column
     private boolean received = false;
 
@@ -55,7 +51,7 @@ public class Letter {
         return body;
     }
 
-    public Date getSendDate() {
+    public LocalDate getSendDate() {
         return sendDate;
     }
 
@@ -63,11 +59,11 @@ public class Letter {
         return departureDelay;
     }
 
-    public Date getDesiredReceiptDate() {
+    public LocalDate getDesiredReceiptDate() {
         return desiredReceiptDate;
     }
 
-    public Date getActualReceiptDate() {
+    public LocalDate getActualReceiptDate() {
         return actualReceiptDate;
     }
 
@@ -75,26 +71,43 @@ public class Letter {
         return received;
     }
 
-    public void setActualReceiptDate(Date actualReceiptDate) {
+    public void setActualReceiptDate(LocalDate actualReceiptDate) {
         this.actualReceiptDate = actualReceiptDate;
     }
 
-    public void setReceived(boolean received) {
-        this.received = received;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Letter letter = (Letter) o;
+        return received == letter.received &&
+                Objects.equals(id, letter.id) &&
+                Objects.equals(user, letter.user) &&
+                Objects.equals(subject, letter.subject) &&
+                Objects.equals(body, letter.body) &&
+                Objects.equals(sendDate, letter.sendDate) &&
+                departureDelay == letter.departureDelay &&
+                Objects.equals(desiredReceiptDate, letter.desiredReceiptDate) &&
+                Objects.equals(actualReceiptDate, letter.actualReceiptDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, user, subject, body, sendDate, departureDelay, desiredReceiptDate, actualReceiptDate, received);
     }
 
     @Override
     public String toString() {
-        return "Letter{" +
-                "id=" + id +
-                ", user=" + user +
-                ", subject='" + subject + '\'' +
-                ", body='" + body + '\'' +
-                ", sendDate=" + sendDate +
-                ", departureDelay=" + departureDelay +
-                ", desiredReceiptDate=" + desiredReceiptDate +
-                ", actualReceiptDate=" + actualReceiptDate +
-                ", received=" + received +
-                '}';
+        return MoreObjects.toStringHelper(this)
+                .add("id", id)
+                .add("user", user)
+                .add("subject", subject)
+                .add("body", body)
+                .add("sendDate", sendDate)
+                .add("departureDelay", departureDelay)
+                .add("desiredReceiptDate", desiredReceiptDate)
+                .add("actualReceiptDate", actualReceiptDate)
+                .add("received", received)
+                .toString();
     }
 }

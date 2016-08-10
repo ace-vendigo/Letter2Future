@@ -19,8 +19,6 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
-import java.net.URL;
-import java.util.HashMap;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -42,7 +40,11 @@ public class UserIntTest extends IntTestTemplate {
     public void testFindAllUsers() throws Exception {
         List<User> all = (List<User>) userRepository.findAll();
         assertThat(all, hasSize(1));
-        assertThat(all, hasItem(user1));
+        assertThat(all, hasItem(
+                allOf(
+                        hasProperty("username", equalTo("Dima")),
+                        hasProperty("password", equalTo("mypass")
+                        ))));
     }
 
     @Test
@@ -67,6 +69,6 @@ public class UserIntTest extends IntTestTemplate {
         HttpEntity<User> request = new HttpEntity<>(user1, headers);
         URI uri = new URI(buildUrl("user/new"));
         String response = template.postForObject(uri, request, String.class);
-        System.out.println("Post response: "+response);
+        System.out.println("Post response: " + response);
     }
 }

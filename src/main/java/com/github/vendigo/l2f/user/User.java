@@ -1,8 +1,7 @@
 package com.github.vendigo.l2f.user;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.apache.commons.lang3.builder.ToStringBuilder;
+import com.google.common.annotations.VisibleForTesting;
+import com.google.common.base.MoreObjects;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -24,10 +23,10 @@ public class User {
     private String password;
 
     @Column(name = "active", columnDefinition = "bit default 0")
-    private boolean active = false;
+    private boolean active;
 
     @Column(name = "role", columnDefinition = "varchar(10) default 'ROLE_USER'")
-    private String role = "ROLE_USER";
+    private String role;
 
     public User() {
     }
@@ -79,14 +78,16 @@ public class User {
         return Objects.hash(username, email, password, active, role);
     }
 
+
     @Override
     public String toString() {
-        return new ToStringBuilder(this)
-                .append("username", username)
-                .append("email", email)
-                .append("password", password)
-                .append("active", active)
-                .append("role", role)
+        return MoreObjects.toStringHelper(this)
+                .add("id", id)
+                .add("username", username)
+                .add("email", email)
+                .add("password", password)
+                .add("active", active)
+                .add("role", role)
                 .toString();
     }
 }
