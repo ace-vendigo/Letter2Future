@@ -52,6 +52,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .addFilterAfter(csrfHeaderFilter, CsrfFilter.class);
     }
 
+    //@Override
+    //public void configure(HttpSecurity http) throws Exception {
+    //    http
+    //            .authorizeRequests()
+    //            .anyRequest().authenticated()
+    //            .and()
+    //            .formLogin().and()
+    //            .logout().and()
+    //            .csrf().disable();
+    //}
+
     @Bean
     @Profile("prod")
     CsrfTokenRepository csrfTokenRepository() {

@@ -17,9 +17,9 @@ public class LetterController {
     LetterService letterService;
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Map<String, String>> createLetter(@RequestBody Letter letter) {
-        letterService.createLetter(letter);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<Letter> createLetter(@RequestBody Letter letter) {
+        Letter savedLetter = letterService.createLetter(letter);
+        return new ResponseEntity<>(savedLetter, HttpStatus.OK);
     }
 
 }

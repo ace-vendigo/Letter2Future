@@ -21,10 +21,11 @@ public class LetterServiceImpl implements LetterService {
     RandomUtils randomUtils;
 
     @Override
-    public void createLetter(Letter letter) {
+    public Letter createLetter(Letter letter) {
         defineActualReceiptDate(letter);
         letter = letterRepository.save(letter);
         log.info("Saved letter {}", letter);
+        return letter;
     }
 
     private void defineActualReceiptDate(Letter letter) {
