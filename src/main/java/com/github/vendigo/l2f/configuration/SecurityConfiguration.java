@@ -55,12 +55,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     //@Override
     //public void configure(HttpSecurity http) throws Exception {
     //    http
-    //            .authorizeRequests()
-    //            .anyRequest().authenticated()
-    //            .and()
-    //            .formLogin().and()
-    //            .logout().and()
-    //            .csrf().disable();
+    //                        .formLogin().loginPage("/#/login")
+    //                        .and()
+    //                        .logout().logoutSuccessUrl("/").and()
+    //                        .authorizeRequests()
+    //                        .antMatchers(
+    //                                "/resources/**",
+    //                                "/webjars/**",
+    //                                "/partials/public/**",
+    //                                "/",
+    //                                "/news",
+    //                                "/user")
+    //                        .permitAll().
+    //                        anyRequest().authenticated().and().
+    //                        csrf().disable();
     //}
 
     @Bean
