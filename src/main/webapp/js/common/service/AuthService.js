@@ -43,7 +43,7 @@
                     $rootScope.authenticated = false;
                     $location.path(URLs.home);
                 }
-            ).error(function(data) {
+            ).error(function (data) {
                 console.log("Logout failed");
             });
         }

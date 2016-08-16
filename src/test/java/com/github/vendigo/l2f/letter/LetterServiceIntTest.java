@@ -22,14 +22,14 @@ public class LetterServiceIntTest extends AbstractIntTest {
                 DepartureDelay.NEXT_MONTH);
         Letter savedLetter = letterService.createLetter(letter);
         assertThat(savedLetter, allOf(
-           hasProperty("id", notNullValue()),
-           hasProperty("userId", equalTo(1L)),
-           hasProperty("subject", equalTo("Letter")),
-           hasProperty("body", equalTo("Hello future!")),
-           hasProperty("sendDate", equalTo(LocalDate.of(2016, Month.AUGUST, 11))),
-           hasProperty("departureDelay", equalTo(DepartureDelay.NEXT_MONTH)),
-           hasProperty("desiredReceiptDate", nullValue()),
-           hasProperty("actualReceiptDate", notNullValue())
+                hasProperty("id", notNullValue()),
+                hasProperty("userId", equalTo(1L)),
+                hasProperty("subject", equalTo("Letter")),
+                hasProperty("body", equalTo("Hello future!")),
+                hasProperty("sendDate", equalTo(LocalDate.of(2016, Month.AUGUST, 11))),
+                hasProperty("departureDelay", equalTo(DepartureDelay.NEXT_MONTH)),
+                hasProperty("desiredReceiptDate", nullValue()),
+                hasProperty("actualReceiptDate", notNullValue())
         ));
     }
 }

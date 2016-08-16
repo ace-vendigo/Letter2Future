@@ -1,16 +1,16 @@
 'use strict';
-(function() {
-  angular.module('L2F.Common').controller('MainController', ['AuthService', MainController]);
+(function () {
+    angular.module('L2F.Common').controller('MainController', ['AuthService', MainController]);
 
-  function MainController(AuthService) {
-      var main = this;
+    function MainController(AuthService) {
+        var main = this;
 
-      AuthService.authenticate();
+        AuthService.authenticate();
 
-      main.credentials = {};
+        main.credentials = {};
 
-      main.logout = function() {
-          AuthService.logout();
-      };
-  }
+        main.logout = function () {
+            AuthService.logout();
+        };
+    }
 })();

@@ -32,7 +32,6 @@ public class UserControllerIntTest extends AbstractIntTest {
     @DatabaseSetup(type = DatabaseOperation.DELETE_ALL)
     public void createNewUser() throws Exception {
         MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
-        headers.add(_csrf, csrfToken);
         HttpEntity<User> request = new HttpEntity<>(user1, headers);
         User user = template.postForObject(new URI(buildUrl("user/new")), request, User.class);
         assertThat(user,

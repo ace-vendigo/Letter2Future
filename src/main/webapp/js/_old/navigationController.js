@@ -19,11 +19,11 @@ l4fApp.controller('navigationController', ['$rootScope', '$scope', '$http', '$lo
             }
         };
 
-        $scope.tab = function(route) {
+        $scope.tab = function (route) {
             return $route.current && route === $route.current.controller;
         };
 
-        var authenticate = function(credentials, callback) {
+        var authenticate = function (credentials, callback) {
             $http.post("/user/login", $scope.credentials).success(function (data) {
                 if (data.message) {
                     console.log("Login succeeded");
@@ -40,7 +40,7 @@ l4fApp.controller('navigationController', ['$rootScope', '$scope', '$http', '$lo
             });
         };
 
-        $scope.login = function() {
+        $scope.login = function () {
             authenticate($scope.credentials);
         };
 
@@ -49,11 +49,11 @@ l4fApp.controller('navigationController', ['$rootScope', '$scope', '$http', '$lo
             $rootScope.authenticated = false;
         };
 
-        $scope.logout = function() {
-            $http.post("/user/logout", {}).success(function() {
+        $scope.logout = function () {
+            $http.post("/user/logout", {}).success(function () {
                 $scope.removeUserData();
                 $location.path("/");
-            }).error(function() {
+            }).error(function () {
                 console.log("Logout failed");
                 $scope.removeUserData();
             });

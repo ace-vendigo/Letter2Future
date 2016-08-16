@@ -1,5 +1,5 @@
 'use strict';
-(function() {
+(function () {
     angular.module('L2F.Common').controller('AuthController', ['AuthService', AuthController]);
 
     function AuthController(AuthService) {
@@ -7,7 +7,7 @@
 
         auth.credentials = {};
 
-        auth.login = function() {
+        auth.login = function () {
             AuthService.login(auth.credentials);
         };
 

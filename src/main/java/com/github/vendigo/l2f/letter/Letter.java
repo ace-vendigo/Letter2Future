@@ -83,12 +83,12 @@ public class Letter {
         return actualReceiptDate;
     }
 
-    public boolean isReceived() {
-        return received;
-    }
-
     public void setActualReceiptDate(LocalDate actualReceiptDate) {
         this.actualReceiptDate = actualReceiptDate;
+    }
+
+    public boolean isReceived() {
+        return received;
     }
 
     @Override

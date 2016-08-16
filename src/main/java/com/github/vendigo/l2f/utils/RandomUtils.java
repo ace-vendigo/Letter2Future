@@ -15,9 +15,9 @@ public class RandomUtils {
     /**
      * Generates random date according to the given {@link DepartureDelay}.
      * <ul>
-     *     <li>{@link DepartureDelay#NEXT_MONTH} - some day in next month</li>
-     *     <li>{@link DepartureDelay#FOR_YEAR} - some day in the next 12 months (starting from the next month)</li>
-     *     <li>{@link DepartureDelay#LONG_TERM} - some day in the next 3 years (starting from the next year)</li>
+     * <li>{@link DepartureDelay#NEXT_MONTH} - some day in next month</li>
+     * <li>{@link DepartureDelay#FOR_YEAR} - some day in the next 12 months (starting from the next month)</li>
+     * <li>{@link DepartureDelay#LONG_TERM} - some day in the next 3 years (starting from the next year)</li>
      * </ul>
      *
      * @throws IllegalArgumentException when used with {@link DepartureDelay#EXACT_DATE}
@@ -47,7 +47,7 @@ public class RandomUtils {
     }
 
     private LocalDate rollYear(DepartureDelay delay, LocalDate date) {
-        return delay == DepartureDelay.LONG_TERM ? date.plusYears(randomBetween(1, 3)): date;
+        return delay == DepartureDelay.LONG_TERM ? date.plusYears(randomBetween(1, 3)) : date;
     }
 
     private int generateRandomDayOfMonth(LocalDate date) {
@@ -55,7 +55,7 @@ public class RandomUtils {
     }
 
     private int randomBetween(int from, int to) {
-        return from+random.nextInt(to);
+        return from + random.nextInt(to);
     }
 
     @VisibleForTesting

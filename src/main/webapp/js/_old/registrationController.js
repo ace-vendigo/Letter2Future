@@ -19,7 +19,7 @@ l4fApp.controller('registrationController', ['$rootScope', '$scope', '$http', '$
             return true;
         };
 
-        $scope.isEmailValid = function() {
+        $scope.isEmailValid = function () {
             if ($scope.registrationForm.email.$error.required) {
                 $scope.emailErrorMessage = 'Email should be not empty';
                 return false;
@@ -33,8 +33,8 @@ l4fApp.controller('registrationController', ['$rootScope', '$scope', '$http', '$
             return true;
         };
 
-        $scope.isFormValid = function() {
-          return $scope.isUsernameValid() && $scope.isEmailValid();
+        $scope.isFormValid = function () {
+            return $scope.isUsernameValid() && $scope.isEmailValid();
         };
 
         $scope.register = function () {
