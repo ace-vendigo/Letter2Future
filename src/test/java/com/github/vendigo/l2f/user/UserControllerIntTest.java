@@ -14,8 +14,7 @@ import org.springframework.util.MultiValueMap;
 import java.net.URI;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.Matchers.*;
 
 public class UserControllerIntTest extends AbstractIntTest {
 
@@ -35,8 +34,14 @@ public class UserControllerIntTest extends AbstractIntTest {
         MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
         headers.add(_csrf, csrfToken);
         HttpEntity<User> request = new HttpEntity<>(user1, headers);
-        URI uri = new URI(buildUrl("user/new"));
-        String response = template.postForObject(uri, request, String.class);
-        System.out.println("Post response: " + response);
+        User user = template.postForObject(new URI(buildUrl("user/new")), request, User.class);
+        assertThat(user,
+                allOf(
+                        hasProperty("id", notNullValue()),
+                        hasProperty("username", equalTo("Dima")),
+                        hasProperty("password", equalTo("mypass")),
+                        hasProperty("email", equalTo("dima@mail.com")),
+                        hasProperty("role", equalTo("ROLE_USER")
+                        )));
     }
 }

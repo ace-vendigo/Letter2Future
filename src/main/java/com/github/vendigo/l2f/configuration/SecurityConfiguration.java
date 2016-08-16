@@ -45,31 +45,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/partials/public/**",
                         "/",
                         "/news",
-                        "/user")
+                        "/user/**")
                 .permitAll().
                 anyRequest().authenticated().and().
-                csrf().csrfTokenRepository(csrfTokenRepository).and()
-                .addFilterAfter(csrfHeaderFilter, CsrfFilter.class);
+                csrf().disable();
+                //csrf().csrfTokenRepository(csrfTokenRepository).and()
+                //.addFilterAfter(csrfHeaderFilter, CsrfFilter.class);
     }
-
-    //@Override
-    //public void configure(HttpSecurity http) throws Exception {
-    //    http
-    //                        .formLogin().loginPage("/#/login")
-    //                        .and()
-    //                        .logout().logoutSuccessUrl("/").and()
-    //                        .authorizeRequests()
-    //                        .antMatchers(
-    //                                "/resources/**",
-    //                                "/webjars/**",
-    //                                "/partials/public/**",
-    //                                "/",
-    //                                "/news",
-    //                                "/user")
-    //                        .permitAll().
-    //                        anyRequest().authenticated().and().
-    //                        csrf().disable();
-    //}
 
     @Bean
     @Profile("prod")

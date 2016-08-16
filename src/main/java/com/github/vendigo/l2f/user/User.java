@@ -21,23 +21,16 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @Column(name = "active", columnDefinition = "bit default 0")
-    private boolean active;
+    @Column
+    private Boolean active = false;
 
-    @Column(name = "role", columnDefinition = "varchar(10) default 'ROLE_USER'")
-    private String role;
+    @Column
+    private String role = "ROLE_USER";
 
     public User() {
     }
 
     public User(String username, String email, String password) {
-        this.username = username;
-        this.email = email;
-        this.password = password;
-    }
-
-    public User(Long id, String username, String email, String password) {
-        this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
