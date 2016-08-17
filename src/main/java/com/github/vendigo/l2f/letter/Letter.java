@@ -33,17 +33,18 @@ public class Letter {
     @Column
     private boolean received = false;
 
-    public Letter(Long userId, String subject, String body, LocalDate sendDate, DepartureDelay departureDelay) {
-        this.userId = userId;
+    public Letter() {
+    }
+
+    public Letter(String subject, String body, LocalDate sendDate, DepartureDelay departureDelay) {
         this.subject = subject;
         this.body = body;
         this.sendDate = sendDate;
         this.departureDelay = departureDelay;
     }
 
-    public Letter(Long userId, String subject, String body, LocalDate sendDate, DepartureDelay departureDelay,
+    public Letter(String subject, String body, LocalDate sendDate, DepartureDelay departureDelay,
                   LocalDate desiredReceiptDate) {
-        this.userId = userId;
         this.subject = subject;
         this.body = body;
         this.sendDate = sendDate;
@@ -81,6 +82,10 @@ public class Letter {
 
     public LocalDate getActualReceiptDate() {
         return actualReceiptDate;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public void setActualReceiptDate(LocalDate actualReceiptDate) {

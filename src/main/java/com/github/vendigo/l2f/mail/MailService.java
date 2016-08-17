@@ -1,7 +1,7 @@
 package com.github.vendigo.l2f.mail;
 
-import com.github.vendigo.l2f.user.User;
+import com.github.vendigo.l2f.letter.Letter;
 
 public interface MailService {
-    void sendEmail(User user);
+    void sendLetter(Letter letter);
 }
