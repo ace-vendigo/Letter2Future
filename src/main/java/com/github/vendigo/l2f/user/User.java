@@ -1,5 +1,6 @@
 package com.github.vendigo.l2f.user;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.MoreObjects;
 
 import javax.persistence.*;
@@ -31,6 +32,14 @@ public class User {
     }
 
     public User(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
+
+    @VisibleForTesting
+    public User(Long id, String username, String email, String password) {
+        this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;

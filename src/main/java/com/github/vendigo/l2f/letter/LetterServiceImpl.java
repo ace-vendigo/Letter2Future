@@ -13,7 +13,7 @@ import static org.springframework.util.Assert.notNull;
 @Service
 public class LetterServiceImpl implements LetterService {
 
-    Logger log = LoggerFactory.getLogger(getClass());
+    private final Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired
     LetterRepository letterRepository;

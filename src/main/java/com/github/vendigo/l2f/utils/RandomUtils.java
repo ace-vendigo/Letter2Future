@@ -1,7 +1,6 @@
 package com.github.vendigo.l2f.utils;
 
 import com.github.vendigo.l2f.letter.DepartureDelay;
-import com.google.common.annotations.VisibleForTesting;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -58,7 +57,6 @@ public class RandomUtils {
         return from + random.nextInt(to);
     }
 
-    @VisibleForTesting
     void setRandom(Random random) {
         this.random = random;
     }

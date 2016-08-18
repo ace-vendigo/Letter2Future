@@ -3,11 +3,10 @@ spring:
     active: prod
   datasource:
     url: jdbc:hsqldb:hsql://localhost:9001/dev;ifexist=true
-  mail:
-    host: smtp.gmail.com
-    port: 587
-    username: l2f.you.from.future
-    password:
 
 l2f:
-    email: l2f.you.from.future@gmail.com
+    mail:
+      address: l2f.you.from.future@gmail.com
+      password: nonRealPassword
+      host: smtp.googlemail.com
+      port: 465
