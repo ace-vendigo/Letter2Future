@@ -1,0 +1,28 @@
+<div class="l2f_navigation col-xs-12">
+    <nav class="pull-left">
+        <ul class="nav nav-pills">
+            <li *ngFor="let route of routes"
+                role="presentation"
+                [ngClass]="{active: isActiveRoute(route)}">
+                <a [routerLink]="route" (click)="clickLink(route)">{{route | uppercase }}</a>
+            </li>
+        </ul>
+    </nav>
+
+    <nav class="pull-right">
+        <ul class="nav nav-pills" *ngIf="!isAuthorized">
+            <li *ngFor="let route of ['login', 'registration']"
+                role="presentation"
+                [ngClass]="{active: isActiveRoute(route)}">
+                <a [routerLink]="route" (click)="clickLink(route)">{{route | uppercase }}</a>
+            </li>
+        </ul>
+
+        <ul class="nav nav-pills" *ngIf="isAuthorized">
+            <li>
+                <a (click)="logout()">Logout</a>
+            </li>
+        </ul>
+    </nav>
+
+</div>

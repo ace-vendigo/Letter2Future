@@ -1,0 +1,40 @@
+@font-face {
+    font-family: windsong;
+    src: url(../../fonts/windsong.ttf);
+}
+
+@media all and (max-width: 499px) {
+    body {
+        font-size: 12px;
+    }
+}
+
+@media all and (min-width: 500px) and (max-width: 999px) {
+    body {
+        font-size: 18px;
+    }
+}
+
+@media (min-width: 1000px) and (max-width: 1499px) {
+    body {
+        font-size: 20px;
+    }
+}
+
+@media (min-width: 1500px) and (max-width: 1999px) {
+    body {
+        font-size: 22px;
+    }
+}
+
+@media (min-width: 2000px) {
+    body {
+        font-size: 24px;
+    }
+}
+
+.l2f_logo {
+    font-family: windsong;
+    font-size: 5em;
+    text-align: center;
+}
