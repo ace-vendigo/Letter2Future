@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <User id="1" username="Dima" email="dima@mail.com" password="mypass" active="false"/>
+    <Verification user_id="1" token="SeeCr3tTok1en" verified="false"/>
+</dataset>

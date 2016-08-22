@@ -8,4 +8,5 @@ import java.util.Optional;
 public interface VerificationService {
     Optional<Verification> generateVerificationRecord(User user);
     Email generateVerificationEmail(Verification verification);
+    VerificationResult activateUser(String token);
 }

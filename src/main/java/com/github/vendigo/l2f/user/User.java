@@ -65,6 +65,10 @@ public class User {
         return active;
     }
 
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
     public String getRole() {
         return role;
     }

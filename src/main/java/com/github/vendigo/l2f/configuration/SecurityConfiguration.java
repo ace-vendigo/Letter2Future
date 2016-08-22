@@ -36,7 +36,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/partials/public/**",
                         "/",
                         "/news",
-                        "/user/**")
+                        "/user/**",
+                        "/verification/**")
                 .permitAll().
                 anyRequest().authenticated().and().
                 csrf().disable();
