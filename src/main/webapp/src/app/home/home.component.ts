@@ -1,15 +1,16 @@
-import {Component} from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import {HomeService} from "./home.service";
 
 @Component({
     selector: "home",
     templateUrl: "home.component.html"
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
     news: string;
     
-    constructor(private homeService: HomeService) {
-        this.homeService.getNews()
-            .subscribe(news => this.news = news.json().news);
+    constructor(private homeService: HomeService) {}
+
+    async ngOnInit() {
+        this.news = await this.homeService.getNews();
     }
 }

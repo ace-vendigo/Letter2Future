@@ -29,10 +29,7 @@ export class RegistrationComponent {
                 controls["email"].value,
                 controls["username"].value,
                 controls["password"].value
-            ))
-                .subscribe(registrationResponse => {
-                    console.log(registrationResponse);
-                });
+            ));
         }
     }
 

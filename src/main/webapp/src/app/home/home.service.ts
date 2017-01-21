@@ -1,23 +1,22 @@
 import {Injectable} from "@angular/core";
-import {Http} from "@angular/http";
-import {Observable} from "rxjs/Rx";
+import { Http, Response } from "@angular/http";
 
 @Injectable()
 export class HomeService {
     private newsRoute = "/news";
-    private newsObservable: Observable<any>;
+    private news: any;
     
     constructor(private http: Http) {
         this.getNews();
     }
-    
-    public getNews() {
-        if (!this.newsObservable) {
-            this.newsObservable = this.http.get(this.newsRoute)
-                .publishReplay(1)
-                .refCount();
+
+    public async getNews(): Promise<any> {
+        if (!this.news) {
+            let newsResponse: Response = await this.http.get(this.newsRoute).toPromise();
+
+            this.news = newsResponse.json().news;
         }
-        
-        return this.newsObservable;
+
+        return this.news;
     }
 }
