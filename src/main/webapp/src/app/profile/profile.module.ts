@@ -1,15 +1,16 @@
-import {NgModule, NgModuleMetadataType} from "@angular/core";
+import {NgModule} from "@angular/core";
 import { CommonModule } from "@angular/common";
 
 import { ProfileComponent } from "./profile.component";
 import { ProfileService } from "./profile.service";
-import { profileRouting } from "./profile.routing";
+import { profileRoutes } from "./profile.routing";
+import { RouterModule } from "@angular/router";
 
 
-@NgModule(<NgModuleMetadataType>{
+@NgModule({
     imports: [
         CommonModule,
-        profileRouting
+        RouterModule.forChild(profileRoutes)
     ],
     declarations: [
         ProfileComponent

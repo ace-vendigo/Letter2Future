@@ -1,8 +1,8 @@
 var del = require("del");
 
 del([
-    "./*.*.js", "./*.*.js.map",
-    "./*.*.css", "./*.*.css.map",
+    "./app.*", "./vendor.*",
+    "./polyfills.*",
     "index.html"
 ]).then(function () {
     console.log("Deleting files");

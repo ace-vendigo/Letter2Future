@@ -4,23 +4,21 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var helpers = require('./helpers');
 
 module.exports = {
-    context: __dirname + "/../",
-
     entry: {
-        'polyfills': '../src/polyfills.ts',
-        'vendor': '../src/vendor.ts',
-        'app': '../src/main.ts'
+        'polyfills': './src/polyfills.ts',
+        'vendor': './src/vendor.ts',
+        'app': './src/main.ts'
     },
 
     resolve: {
-        extensions: ['', '.js', '.ts']
+        extensions: ['', '.ts', '.js']
     },
 
     module: {
         loaders: [
             {
                 test: /\.ts$/,
-                loaders: ['ts', 'angular2-template-loader']
+                loaders: ['awesome-typescript-loader', 'angular2-template-loader']
             },
             {
                 test: /\.html$/,
@@ -49,7 +47,8 @@ module.exports = {
         }),
 
         new HtmlWebpackPlugin({
-            template: './src/index.html'
+            template: './src/index.html',
+            filename: './../index.html'
         })
     ]
 };

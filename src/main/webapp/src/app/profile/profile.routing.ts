@@ -1,8 +1,6 @@
-import {Routes, RouterModule} from "@angular/router";
-import {ProfileComponent} from "./profile.component";
+import { Routes } from "@angular/router";
+import { ProfileComponent } from "./profile.component";
 
-const profileRoutes: Routes = <Routes>[
+export const profileRoutes:Routes = [
     {path: "profile", component: ProfileComponent}
 ];
-
-export const profileRouting = RouterModule.forChild(profileRoutes);

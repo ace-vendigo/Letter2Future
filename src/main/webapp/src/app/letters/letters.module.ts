@@ -1,16 +1,21 @@
-import { NgModule, NgModuleMetadataType } from "@angular/core";
+import { NgModule } from "@angular/core";
 import {CommonModule} from "@angular/common";
 
-import { lettersRouting } from "./letters.routing";
+import { lettersRoutes } from "./letters.routing";
 import { LettersComponent } from "./letters.component";
+import { LetterComposeComponent } from "./letter-compose/letter-compose.component";
+import { RouterModule } from "@angular/router";
+import { LetterListComponent } from "./letter-list/letter-list.component";
 
-@NgModule(<NgModuleMetadataType>{
+@NgModule({
     imports: [
         CommonModule,
-        lettersRouting
+        RouterModule.forChild(lettersRoutes)
     ],
     declarations: [
-        LettersComponent
+        LettersComponent,
+        LetterComposeComponent,
+        LetterListComponent
     ]
 })
 export class LettersModule {}

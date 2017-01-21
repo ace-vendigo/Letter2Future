@@ -1,4 +1,4 @@
-import {Component, ComponentMetadataType} from "@angular/core";
+import {Component} from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 
 import { AuthenticationService } from "../authentication.service";
@@ -19,7 +19,7 @@ export class LoginComponent {
             this.authenticationService.login(
                 this.loginForm.controls["username"].value,
                 this.loginForm.controls["password"].value
-            )
+            );
         }
     }
 

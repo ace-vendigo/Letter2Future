@@ -1,18 +1,19 @@
-import { NgModule, NgModuleMetadataType } from "@angular/core";
+import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ReactiveFormsModule } from "@angular/forms";
 
-import { authenticationRouting } from "./authentication.routing"
+import { authenticationRoutes } from "./authentication.routing"
 import { AuthenticationService } from "./authentication.service";
 
 import { RegistrationComponent } from "./registration";
 import { LoginComponent } from "./login";
+import {RouterModule} from "@angular/router";
 
-@NgModule(<NgModuleMetadataType>{
+@NgModule({
     imports: [
         CommonModule,
         ReactiveFormsModule,
-        authenticationRouting
+        RouterModule.forChild(authenticationRoutes)
     ],
     declarations: [
         RegistrationComponent,

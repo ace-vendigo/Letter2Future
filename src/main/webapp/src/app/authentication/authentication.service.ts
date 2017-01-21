@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {Http, Response} from "@angular/http";
+import {Http} from "@angular/http";
 
 import { User } from "../shared";
 import {Subject, Observable} from "rxjs/Rx";
@@ -42,13 +42,16 @@ export class AuthenticationService {
     }
     
     public register (user: User) {
-        return this.http.post(this.config.REGISTER_USER, user);
+        return this.http.post(this.config.REGISTER_USER, user)
+            .map((response) => {
+                this.router.navigate(["/home"]);
+                return response;
+            });
     }
     
     public login (username: string, password: string) {
-        var headers = "Basic " + btoa(username + ":" + password);
         this.http.post("user", {username: username, password: password})
-            .subscribe((response: Response) => {
+            .subscribe(() => {
                 this.authenticationActionSubject.next(true);
                 this.router.navigate(["/home"]);
             });
@@ -57,5 +60,6 @@ export class AuthenticationService {
     public logout () {
         this.currentUser = null;
         this.authenticationActionSubject.next(false);
+        this.router.navigate(["/home"]);
     }
 }

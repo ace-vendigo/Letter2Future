@@ -1,8 +1,6 @@
-import { Routes, RouterModule } from "@angular/router";
+import { Routes} from "@angular/router";
 import { LettersComponent } from "./letters.component";
 
-const lettersRoutes = <Routes>[
+export const lettersRoutes: Routes = [
     { path: "letters", component: LettersComponent}  
 ];
-
-export const lettersRouting = RouterModule.forChild(lettersRoutes);
