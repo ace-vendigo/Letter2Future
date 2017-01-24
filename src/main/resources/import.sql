@@ -1,1 +1,1 @@
-INSERT INTO USER (USERNAME, PASSWORD, EMAIL, ACTIVE, ROLE) VALUES ('vendigo', 'pass', 'l2f.you.from.future@gmail.com', 1, 'ROLE_USER')
+INSERT INTO user (USERNAME, PASSWORD, EMAIL, ACTIVE, ROLE) VALUES ('vendigo', 'pass', 'l2f.you.from.future@gmail.com', 1, 'ROLE_USER')
