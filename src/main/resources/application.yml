@@ -2,8 +2,17 @@ spring:
   profiles:
     active: prod
   datasource:
-    url: jdbc:hsqldb:hsql://localhost:9001/dev;ifexist=true
-
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/letter2future?serverTimezone=GMT&useSSL=false
+    username: root
+    password: iseedeadpeople
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        show_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
 l2f:
     mail:
       address: l2f.you.from.future@gmail.com

@@ -3,19 +3,17 @@ package com.github.vendigo.l2f.verification;
 import com.github.vendigo.l2f.mail.MailService;
 import com.github.vendigo.l2f.user.User;
 import com.github.vendigo.l2f.user.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.mail.Email;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class VerificationServiceImpl implements VerificationService {
-
-    private final Logger log = LoggerFactory.getLogger(getClass());
     public static final int TOKEN_LENGTH = 40;
     private VerificationRepository verificationRepository;
     private UserRepository userRepository;

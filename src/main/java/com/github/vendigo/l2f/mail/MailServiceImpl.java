@@ -3,21 +3,18 @@ package com.github.vendigo.l2f.mail;
 import com.github.vendigo.l2f.letter.Letter;
 import com.github.vendigo.l2f.user.User;
 import com.github.vendigo.l2f.user.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.Email;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.SimpleEmail;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
+@Slf4j
 public class MailServiceImpl implements MailService {
-
-    private final Logger log = LoggerFactory.getLogger(getClass());
-
     @Autowired
     private UserRepository userRepository;
     @Value("${l2f.mail.address}")

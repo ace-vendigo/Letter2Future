@@ -1,5 +1,0 @@
-TODO:
-* Refactor HomeController, make it more sane. Introduce Service for providing data.
-
-Understand:
-* Why get request is vital for logout to work

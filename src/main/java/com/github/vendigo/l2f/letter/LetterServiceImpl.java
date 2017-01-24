@@ -1,8 +1,7 @@
 package com.github.vendigo.l2f.letter;
 
 import com.github.vendigo.l2f.utils.RandomUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,10 +10,8 @@ import java.time.LocalDate;
 import static org.springframework.util.Assert.notNull;
 
 @Service
+@Slf4j
 public class LetterServiceImpl implements LetterService {
-
-    private final Logger log = LoggerFactory.getLogger(getClass());
-
     @Autowired
     LetterRepository letterRepository;
     @Autowired
