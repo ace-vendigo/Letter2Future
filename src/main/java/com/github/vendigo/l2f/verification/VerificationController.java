@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/verification")
+@RequestMapping("api/verification")
 public class VerificationController {
     @Autowired
     VerificationService verificationService;

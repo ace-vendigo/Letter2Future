@@ -27,17 +27,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http
-                .httpBasic().and()
+                .formLogin()
+                .loginPage("/login.html")
+                .loginProcessingUrl("/api/login")
+                .and()
                 .logout().logoutSuccessUrl("/").and()
                 .authorizeRequests()
                 .antMatchers(
-                        "/resources/**",
-                        "/webjars/**",
-                        "/partials/public/**",
                         "/",
-                        "/news",
-                        "/user/**",
-                        "/verification/**")
+                        "/login.html",
+                        "/dist/**",
+                        "/api/news")
                 .permitAll().
                 anyRequest().authenticated().and().
                 csrf().disable();
