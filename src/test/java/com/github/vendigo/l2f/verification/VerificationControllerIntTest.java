@@ -20,7 +20,7 @@ public class VerificationControllerIntTest extends AbstractIntTest {
     @ExpectedDatabase(value = "classpath:datasets/afterUserActivation.xml", assertionMode = DatabaseAssertionMode.NON_STRICT)
     public void activateUser() throws Exception {
         template = new TestRestTemplate();
-        ResponseEntity<VerificationResult> result = template.getForEntity(buildUrl("/verification/activate/SeeCr3tTok1en"),
+        ResponseEntity<VerificationResult> result = template.getForEntity(buildUrl("api/verification/activate/SeeCr3tTok1en"),
                 VerificationResult.class);
 
         assertThat(result.getStatusCode(), equalTo(HttpStatus.OK));

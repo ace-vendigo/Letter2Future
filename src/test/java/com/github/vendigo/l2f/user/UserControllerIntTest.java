@@ -29,7 +29,7 @@ public class UserControllerIntTest extends AbstractIntTest {
 
     @Test
     public void getNews() throws Exception {
-        ResponseEntity<String> response = template.getForEntity(buildUrl("news"), String.class);
+        ResponseEntity<String> response = template.getForEntity(buildUrl("api/news"), String.class);
         assertThat(response.getStatusCode(), equalTo(HttpStatus.OK));
         assertThat(response.getBody(), notNullValue());
     }
@@ -39,7 +39,7 @@ public class UserControllerIntTest extends AbstractIntTest {
     public void createNewUser() throws Exception {
         MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
         HttpEntity<User> request = new HttpEntity<>(user1, headers);
-        User user = template.postForObject(new URI(buildUrl("user/new")), request, User.class);
+        User user = template.postForObject(new URI(buildUrl("api/user/new")), request, User.class);
         assertThat(user,
                 allOf(
                         hasProperty("id", notNullValue()),

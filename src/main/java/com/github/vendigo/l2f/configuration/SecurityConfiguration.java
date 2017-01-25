@@ -31,7 +31,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .loginPage("/login.html")
                 .loginProcessingUrl("/api/login")
                 .and()
-                .logout().logoutSuccessUrl("/").and()
+                .logout()
+                .logoutUrl("/api/logout")
+                .logoutSuccessUrl("/")
+                .and()
                 .authorizeRequests()
                 .antMatchers(
                         "/",
