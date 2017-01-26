@@ -3,9 +3,8 @@ package com.github.vendigo.l2f.user;
 import com.github.springtestdbunit.annotation.DatabaseOperation;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.vendigo.l2f.AbstractIntTest;
-import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
-import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,13 +18,7 @@ import static org.hamcrest.Matchers.*;
 
 public class UserControllerIntTest extends AbstractIntTest {
 
-    private TestRestTemplate template;
     private User user1 = new User("Dima", "dima@mail.com", "mypass");
-
-    @Before
-    public void setUp() throws Exception {
-        template = new TestRestTemplate();
-    }
 
     @Test
     public void getNews() throws Exception {
@@ -34,6 +27,7 @@ public class UserControllerIntTest extends AbstractIntTest {
         assertThat(response.getBody(), notNullValue());
     }
 
+    @Ignore
     @Test
     @DatabaseSetup(type = DatabaseOperation.DELETE_ALL)
     public void createNewUser() throws Exception {

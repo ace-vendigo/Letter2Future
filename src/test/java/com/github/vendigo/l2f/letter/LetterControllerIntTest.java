@@ -2,9 +2,8 @@ package com.github.vendigo.l2f.letter;
 
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.vendigo.l2f.AbstractIntTest;
-import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
-import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpEntity;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -17,13 +16,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
 public class LetterControllerIntTest extends AbstractIntTest {
-    private TestRestTemplate template;
-
-    @Before
-    public void setUp() throws Exception {
-        template = new TestRestTemplate("Dima", "mypass");
-    }
-
+    @Ignore
     @Test
     @DatabaseSetup(value = "classpath:datasets/userWithId.xml")
     public void createLetter() throws Exception {

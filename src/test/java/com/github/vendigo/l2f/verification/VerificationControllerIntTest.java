@@ -4,6 +4,7 @@ import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.ExpectedDatabase;
 import com.github.springtestdbunit.assertion.DatabaseAssertionMode;
 import com.github.vendigo.l2f.AbstractIntTest;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
@@ -13,8 +14,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
 
 public class VerificationControllerIntTest extends AbstractIntTest {
-    private TestRestTemplate template;
-
+    @Ignore
     @Test
     @DatabaseSetup(value = "classpath:datasets/beforeUserActivation.xml")
     @ExpectedDatabase(value = "classpath:datasets/afterUserActivation.xml", assertionMode = DatabaseAssertionMode.NON_STRICT)
