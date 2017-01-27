@@ -1,9 +1,10 @@
 import {Injectable} from "@angular/core";
 import { Http, Response } from "@angular/http";
+import { API_PATH } from "../app.config";
 
 @Injectable()
 export class HomeService {
-    private newsRoute = "/news";
+    private newsRoute = API_PATH + "/news";
     private news: any;
     
     constructor(private http: Http) {

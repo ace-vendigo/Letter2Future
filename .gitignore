@@ -3,11 +3,9 @@
 target/*
 
 # Front end tools dirs
-/src/main/webapp/typings/
-/src/main/webapp/node_modules/
-/src/main/webapp/node/
+**/npm-debug.log
+/src/main/resources/static/
+/src/main/frontend/node_modules/
+/src/main/frontend/node/
 
 # Webpack build files
-/src/main/webapp/dist/
-/src/main/webapp/index.html
-**/npm-debug.log

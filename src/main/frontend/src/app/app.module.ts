@@ -10,16 +10,16 @@ import { AppComponent } from './app.component';
 import { appRoutes } from "./app.routing";
 
 // Shared
-import { SharedModule } from "./shared";
+import { SharedModule } from "./shared/index";
 
 // Authentication
-import { AuthenticationModule } from "./authentication";
+import { AuthenticationModule } from "./authentication/index";
 
 // Home
-import { HomeModule } from "./home";
+import { HomeModule } from "./home/index";
 
 // Letters
-import { LettersModule } from "./letters";
+import { LettersModule } from "./letters/index";
 import { RouterModule } from "@angular/router";
 
 const declarations = [

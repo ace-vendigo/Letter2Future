@@ -10,11 +10,13 @@ module.exports = webpackMerge(commonConfig, {
     devtool: 'source-map',
 
     output: {
-        path: helpers.root('./dist'),
-        publicPath: '/dist',
+        path: './../resources/static/src',
+        publicPath: '/src',
         filename: '[name].js',
         chunkFilename: '[id].chunk.js'
     },
+    
+    debug: true,
 
     htmlLoader: {
         minimize: false // workaround for ng2

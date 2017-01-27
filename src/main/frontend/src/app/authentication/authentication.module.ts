@@ -5,9 +5,9 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { authenticationRoutes } from "./authentication.routing"
 import { AuthenticationService } from "./authentication.service";
 
-import { RegistrationComponent } from "./registration";
-import { LoginComponent } from "./login";
-import {RouterModule} from "@angular/router";
+import { RegistrationComponent } from "./registration/index";
+import { LoginComponent } from "./login/index";
+import { RouterModule } from "@angular/router";
 
 @NgModule({
     imports: [
@@ -23,4 +23,5 @@ import {RouterModule} from "@angular/router";
         AuthenticationService
     ]
 })
-export class AuthenticationModule {}
+export class AuthenticationModule {
+}

@@ -2,7 +2,7 @@ import {Component, Injectable} from "@angular/core";
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 import {AuthenticationService} from "../authentication.service";
-import {User} from "../../shared";
+import {User} from "../../shared/models/user";
 
 @Component({
     selector: "l2f-registration",
