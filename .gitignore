@@ -8,6 +8,8 @@ target/*
 /src/main/webapp/node/
 
 # Webpack build files
-/src/main/webapp/dist/
-/src/main/webapp/index.html
+
 **/npm-debug.log
+/src/main/resources/static/
+/src/main/frontend/node_modules/
+/src/main/frontend/node/
