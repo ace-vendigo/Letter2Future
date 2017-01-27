@@ -4,7 +4,7 @@
   "description": "Simple Angular 2 seed project with webpack",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build",
+    "start": "node server.js",
     "test": "karma start",
     "build": "rimraf ../resources/static/* && webpack --progress --profile",
     "mvn": "cd ../../.. && mvn spring-boot:run"
@@ -24,6 +24,9 @@
     "bootstrap": "^3.3.7",
     "core-js": "2.4.1",
     "del": "2.2.2",
+    "express": "4.14.0",
+    "express-http-proxy": "0.11.0",
+    "http-proxy": "1.16.2",
     "jquery": "^3.1.0",
     "rxjs": "^5.0.1",
     "zone.js": "^0.7.4"

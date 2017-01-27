@@ -48,6 +48,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(
                         "/",
                         "/src/**",
+                        "/api/user",
                         "/api/user/new",
                         "/api/news")
                 .permitAll().
