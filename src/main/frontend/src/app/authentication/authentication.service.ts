@@ -35,8 +35,15 @@ export class AuthenticationService {
 
         if (!this.currentUser) {
             let currentUserResponse:Response = await this.http.get(GET_USER_URL).toPromise();
-            let user = currentUserResponse.json().principal;
-            this.currentUser = new User(user.email, user.username, null);
+            try {
+                let user = currentUserResponse.json().principal;
+
+                this.currentUser = new User(user.email, user.username, null)
+            }
+            // Empty user response
+            catch (err) {
+                this.currentUser = new User();
+            }
         }
 
         return this.currentUser;
@@ -54,7 +61,7 @@ export class AuthenticationService {
     }
 
     public async login(username:string, password:string) {
-        const LOGIN_URL = API_PATH + "login";
+        const LOGIN_URL = API_PATH + "user/login";
         try {
             await this.http.post(LOGIN_URL, {username: username, password: password}).toPromise();
             this.authenticationActionSubject.next(true);
