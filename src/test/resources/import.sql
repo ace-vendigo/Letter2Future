@@ -1,1 +1,0 @@
-INSERT INTO user (USERNAME, PASSWORD, EMAIL, ACTIVE, ROLE) VALUES ('testUser', 'pass', 'test@gmail.com', 1, 'ROLE_USER')

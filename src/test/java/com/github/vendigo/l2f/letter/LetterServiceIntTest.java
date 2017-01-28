@@ -1,6 +1,5 @@
 package com.github.vendigo.l2f.letter;
 
-import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.vendigo.l2f.AbstractIntTest;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,6 @@ public class LetterServiceIntTest extends AbstractIntTest {
     LetterService letterService;
 
     @Test
-    @DatabaseSetup(value = "classpath:datasets/userWithId.xml")
     public void createLetter() throws Exception {
         Letter letter = new Letter("Letter", "Hello future!", LocalDate.of(2016, Month.AUGUST, 11),
                 DepartureDelay.NEXT_MONTH);

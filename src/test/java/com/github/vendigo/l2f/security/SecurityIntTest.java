@@ -1,13 +1,16 @@
 package com.github.vendigo.l2f.security;
 
 import com.github.vendigo.l2f.AbstractIntTest;
-import org.junit.Ignore;
+import com.github.vendigo.l2f.user.User;
 import org.junit.Test;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import java.util.Map;
+
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
@@ -29,8 +32,15 @@ public class SecurityIntTest extends AbstractIntTest {
     }
 
     @Test
+    public void registrationIsAvailableWithoutLogin() throws Exception {
+        User user = new User("test", "test@meta.ua", "password");
+        ResponseEntity<String> response = template.postForEntity(buildUrl("api/user/new"), user, String.class);
+        assertThat(response.getStatusCode(), equalTo(HttpStatus.OK));
+    }
+
+    @Test
     public void staticResourcesAreAvailableWithoutLogin() throws Exception {
-        ResponseEntity<String> response = template.getForEntity(buildUrl("dist/app.js"), String.class);
+        ResponseEntity<String> response = template.getForEntity(buildUrl("src/app.js"), String.class);
         assertThat(response.getStatusCode(), equalTo(HttpStatus.OK));
         assertThat(response.getBody(), notNullValue());
     }
@@ -43,18 +53,22 @@ public class SecurityIntTest extends AbstractIntTest {
 
     @Test
     public void loginIsSuccess() throws Exception {
-        ResponseEntity<String> loginResponse = performLogin();
+        ResponseEntity<String> loginResponse = login();
         assertThat(loginResponse.getStatusCode(), equalTo(HttpStatus.OK));
     }
 
-    @Ignore
+    @Test
+    public void logoutIsSuccess() throws Exception {
+        HttpEntity<Object> httpEntity = new HttpEntity<>(performLogin());
+        ResponseEntity<Map> response = template.exchange(buildUrl("/api/logout"), HttpMethod.POST, httpEntity, Map.class);
+        assertThat(response.getStatusCode(), equalTo(HttpStatus.FOUND));
+    }
+
     @Test
     public void userEndpointIsAvailableAfterLogin() throws Exception {
-        ResponseEntity<String> loginResponse = performLogin();
-        HttpEntity<Object> httpEntity = new HttpEntity<>(loginResponse.getHeaders());
-        ResponseEntity<String> response = template.exchange(buildUrl("/api/user"), HttpMethod.GET, httpEntity, String.class);
-        System.out.println(response.getBody());
+        HttpEntity<Object> httpEntity = new HttpEntity<>(performLogin());
+        ResponseEntity<Map> response = template.exchange(buildUrl("/api/user"), HttpMethod.GET, httpEntity, Map.class);
         assertThat(response.getStatusCode(), equalTo(HttpStatus.OK));
-        assertThat(response.getBody(), notNullValue());
+        assertThat(response.getBody().get("authenticated"), is(true));
     }
 }

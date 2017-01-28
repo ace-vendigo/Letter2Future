@@ -101,25 +101,6 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.dbunit</groupId>
-            <artifactId>dbunit</artifactId>
-            <version>${dbunit.version}</version>
-            <type>jar</type>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.github.springtestdbunit</groupId>
-            <artifactId>spring-test-dbunit</artifactId>
-            <version>${spring-test-dbunit.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.jayway.restassured</groupId>
-            <artifactId>rest-assured</artifactId>
-            <version>${rest-assured.version}</version>
-            <scope>test</scope>
-        </dependency>
 
         <!--Web-->
     </dependencies>
@@ -164,18 +145,17 @@
                         </configuration>
                     </execution>
 
-                    <!--Temporary commented as failing-->
-                    <!--<execution>
-                        <id>npm start</id>
+                    <execution>
+                        <id>npm build</id>
                         <phase>generate-resources</phase>
                         <goals>
                             <goal>npm</goal>
                         </goals>
 
                         <configuration>
-                            <arguments>start</arguments>
+                            <arguments>run build</arguments>
                         </configuration>
-                    </execution>-->
+                    </execution>
                 </executions>
             </plugin>
         </plugins>
