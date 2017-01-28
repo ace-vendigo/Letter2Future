@@ -27,6 +27,7 @@ public class SecurityIntTest extends AbstractIntTest {
     @Test
     public void getNewsIsAvailableWithoutLogin() throws Exception {
         ResponseEntity<String> response = template.getForEntity(buildUrl("api/news"), String.class);
+        System.out.println(response);
         assertThat(response.getStatusCode(), equalTo(HttpStatus.OK));
         assertThat(response.getBody(), notNullValue());
     }
@@ -34,8 +35,15 @@ public class SecurityIntTest extends AbstractIntTest {
     @Test
     public void registrationIsAvailableWithoutLogin() throws Exception {
         User user = new User("test", "test@meta.ua", "password");
-        ResponseEntity<String> response = template.postForEntity(buildUrl("api/user/new"), user, String.class);
+        ResponseEntity<String> response = post("api/user/new", user, String.class);
         assertThat(response.getStatusCode(), equalTo(HttpStatus.OK));
+    }
+
+    @Test
+    public void csrfProtectionIsEnabled() throws Exception {
+        User user = new User("test", "test@meta.ua", "password");
+        ResponseEntity<String> response = template.postForEntity(buildUrl("api/user/new"), user, String.class);
+        assertThat(response.getStatusCode(), equalTo(HttpStatus.FORBIDDEN));
     }
 
     @Test

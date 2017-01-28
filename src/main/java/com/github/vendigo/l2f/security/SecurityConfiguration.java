@@ -9,6 +9,8 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.csrf.CsrfTokenRepository;
 
 import javax.sql.DataSource;
 
@@ -52,7 +54,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/api/news")
                 .permitAll().
                 anyRequest().authenticated().and().
-                csrf().disable();
+                csrf().csrfTokenRepository(csrfTokenRepository());
+    }
+
+    @Bean
+    public CsrfTokenRepository csrfTokenRepository() {
+        return CookieCsrfTokenRepository.withHttpOnlyFalse();
     }
 
     @Bean
