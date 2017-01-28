@@ -61,7 +61,7 @@ export class AuthenticationService {
     }
 
     public async login(username:string, password:string) {
-        const LOGIN_URL = API_PATH + "user/login";
+        const LOGIN_URL = API_PATH + "login";
         try {
             await this.http.post(LOGIN_URL, {username: username, password: password}).toPromise();
             this.authenticationActionSubject.next(true);
