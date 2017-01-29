@@ -14,6 +14,9 @@ spring:
         show_sql: true
         dialect: org.hibernate.dialect.MySQLDialect
 l2f:
+    link: http://localhost:8080
+    verification:
+      subject: Letter to future - email confirmation
     mail:
       address: l2f.you.from.future@gmail.com
       password: nonRealPassword

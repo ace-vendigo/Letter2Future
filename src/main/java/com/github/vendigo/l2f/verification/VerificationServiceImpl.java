@@ -3,45 +3,63 @@ package com.github.vendigo.l2f.verification;
 import com.github.vendigo.l2f.mail.MailService;
 import com.github.vendigo.l2f.user.User;
 import com.github.vendigo.l2f.user.UserRepository;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.apache.commons.mail.Email;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.io.InputStream;
 import java.util.Optional;
 
 @Service
 @Slf4j
 public class VerificationServiceImpl implements VerificationService {
     public static final int TOKEN_LENGTH = 40;
-    private VerificationRepository verificationRepository;
-    private UserRepository userRepository;
-    private MailService mailService;
-
     @Autowired
-    public VerificationServiceImpl(VerificationRepository verificationRepository, UserRepository userRepository,
-                                   MailService mailService) {
-        this.verificationRepository = verificationRepository;
-        this.userRepository = userRepository;
-        this.mailService = mailService;
-    }
+    VerificationRepository verificationRepository;
+    @Autowired
+    UserRepository userRepository;
+    @Autowired
+    MailService mailService;
+    @Value("${l2f.verification.subject}")
+    String letterSubject;
+    @Value("${l2f.link}")
+    String host;
 
     @Override
     public Optional<Verification> generateVerificationRecord(User user) {
-        if (user.isActive()) {
-            log.info("User {} is already active, verificationRecord hasn't been generated", user.getUsername());
-            return Optional.empty();
-        } else {
+        if (!user.isActive()) {
             Verification verification = new Verification(user.getId(), RandomStringUtils.randomAlphanumeric(TOKEN_LENGTH));
-            verificationRepository.save(verification);
+            verification = verificationRepository.save(verification);
+            VerificationLetter verificationLetter = generateVerificationLetter(verification, user);
+            mailService.sendVerificationLetter(verificationLetter);
             return Optional.of(verification);
+        } else {
+            return Optional.empty();
         }
     }
 
-    @Override
-    public Email generateVerificationEmail(Verification verification) {
-        return null;
+    @SneakyThrows
+    private VerificationLetter generateVerificationLetter(Verification verification, User user) {
+        VerificationLetter letter = new VerificationLetter();
+        letter.setSubject(letterSubject);
+        letter.setEmail(user.getEmail());
+        InputStream templateFileStream = getClass().getClassLoader()
+                .getResourceAsStream("templates/verification-letter-template.html");
+        String letterTemplate = IOUtils.toString(templateFileStream);
+        String messageBody = letterTemplate.replace("%username%", user.getUsername())
+                .replace("%link%", createLink(verification));
+        letter.setBody(messageBody);
+        return letter;
+    }
+
+    private String createLink(Verification verification) {
+        return "%host%/api/verification/activate/%token%"
+                .replace("%host%", host)
+                .replace("%token%", verification.getToken());
     }
 
     @Override

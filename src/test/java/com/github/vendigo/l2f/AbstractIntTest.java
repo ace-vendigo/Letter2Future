@@ -2,6 +2,7 @@ package com.github.vendigo.l2f;
 
 import com.github.vendigo.l2f.user.User;
 import com.github.vendigo.l2f.user.UserRepository;
+import com.github.vendigo.l2f.verification.VerificationRepository;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,15 +24,19 @@ public abstract class AbstractIntTest {
     protected int port;
     protected TestRestTemplate template;
     @Autowired
-    UserRepository userRepository;
+    protected UserRepository userRepository;
+    @Autowired
+    protected VerificationRepository verificationRepository;
+    protected User user;
 
     @Before
     public void setUp() throws Exception {
         template = new TestRestTemplate();
         userRepository.deleteAll();
+        verificationRepository.deleteAll();
         User user = new User("testUser", "test@i.ua", "pass");
         user.setActive(true);
-        userRepository.save(user);
+        this.user = userRepository.save(user);
     }
 
     protected String buildUrl(String path) {

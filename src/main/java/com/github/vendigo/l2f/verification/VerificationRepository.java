@@ -6,4 +6,5 @@ import java.util.Optional;
 
 public interface VerificationRepository extends CrudRepository<Verification, Long> {
     Optional<Verification> findByToken(String token);
+    Optional<Verification> findByUserId(Long userId);
 }
