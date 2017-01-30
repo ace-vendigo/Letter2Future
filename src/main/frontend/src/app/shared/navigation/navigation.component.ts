@@ -41,7 +41,7 @@ export class NavigationComponent {
         // this.authenticationService.login();
     }
 
-    public logout() {
-        this.authenticationService.logout();
+    public async logout() {
+        await this.authenticationService.logout();
     }
 }

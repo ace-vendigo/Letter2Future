@@ -14,15 +14,4 @@ export class ProfileService {
     constructor(private http:Http) {
         console.log("ProfileService: constructor");
     }
-
-    public getCurrentUser():Observable<Profile> {
-        if (!this.profile) {
-            this.profile = this.http.get(ProfileService.config.GET_PROFILE)
-                .map((res:Response) => new Profile(res.json().principal))
-                .publishReplay(1)
-                .refCount();
-        }
-        console.log("ProfileService: getCurrentUser");
-        return this.profile;
-    }
 }

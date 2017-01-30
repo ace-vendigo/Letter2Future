@@ -11,9 +11,5 @@ export class ProfileComponent {
     public profile:Profile = new Profile({});
 
     constructor(private profileService:ProfileService) {
-        this.profileService.getCurrentUser()
-            .subscribe((profile:Profile) => {
-                this.profile = profile;
-            })
     }
 }

@@ -1,4 +1,5 @@
-import {Component, ViewEncapsulation} from "@angular/core";
+import { Component, ViewEncapsulation, OnInit } from "@angular/core";
+import { AuthenticationService } from "./authentication/authentication.service";
 
 @Component({
     selector: "l2f-app",
@@ -6,4 +7,10 @@ import {Component, ViewEncapsulation} from "@angular/core";
     styleUrls: ["app.component.css"],
     encapsulation: ViewEncapsulation.None
 })
-export class AppComponent {}
+export class AppComponent implements OnInit {
+    constructor(private authenticationService: AuthenticationService) {}
+
+    async ngOnInit() {
+        this.authenticationService.checkCurrentUser();
+    }
+}
