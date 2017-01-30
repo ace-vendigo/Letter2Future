@@ -4,6 +4,7 @@ import com.github.vendigo.l2f.letter.Letter;
 import com.github.vendigo.l2f.user.User;
 import com.github.vendigo.l2f.user.UserRepository;
 import com.github.vendigo.l2f.verification.VerificationLetter;
+import com.github.vendigo.l2f.verification.VerificationStatus;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.mail.DefaultAuthenticator;
@@ -40,15 +41,19 @@ public class MailServiceImpl implements MailService {
         email.send();
     }
 
-    @SneakyThrows
     @Override
-    public void sendVerificationLetter(VerificationLetter verificationLetter) {
-        Email email = prepareEmail();
-        email.setSubject(verificationLetter.getSubject());
-        email.setMsg(verificationLetter.getBody());
-        email.addTo(verificationLetter.getEmail());
-        log.info("Sending verification email to: {} ", verificationLetter.getSubject());
-        email.send();
+    public VerificationStatus sendVerificationLetter(VerificationLetter verificationLetter) {
+        try {
+            Email email = prepareEmail();
+            email.setSubject(verificationLetter.getSubject());
+            email.setMsg(verificationLetter.getBody());
+            email.addTo(verificationLetter.getEmail());
+            log.info("Sending verification email to: {} ", verificationLetter.getSubject());
+            email.send();
+            return VerificationStatus.LETTER_SENT;
+        } catch (EmailException e) {
+            return VerificationStatus.MAIL_ERROR;
+        }
     }
 
     private Email prepareEmail() throws EmailException {

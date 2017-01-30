@@ -16,7 +16,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User createUser(User user) {
         User savedUser = userRepository.save(user);
-        verificationService.generateVerificationRecord(user);
+        verificationService.initVerification(user);
         return savedUser;
     }
 }

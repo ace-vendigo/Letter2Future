@@ -30,16 +30,19 @@ public class VerificationServiceImpl implements VerificationService {
     String host;
 
     @Override
-    public Optional<Verification> generateVerificationRecord(User user) {
+    public VerificationStatus initVerification(User user) {
         if (!user.isActive()) {
-            Verification verification = new Verification(user.getId(), RandomStringUtils.randomAlphanumeric(TOKEN_LENGTH));
-            verification = verificationRepository.save(verification);
-            VerificationLetter verificationLetter = generateVerificationLetter(verification, user);
-            mailService.sendVerificationLetter(verificationLetter);
-            return Optional.of(verification);
+            return generateVerificationRecord(user);
         } else {
-            return Optional.empty();
+            return VerificationStatus.USER_ALREADY_VERIFIED;
         }
+    }
+
+    private VerificationStatus generateVerificationRecord(User user) {
+        Verification verification = new Verification(user.getId(), RandomStringUtils.randomAlphanumeric(TOKEN_LENGTH));
+        verification = verificationRepository.save(verification);
+        VerificationLetter verificationLetter = generateVerificationLetter(verification, user);
+        return mailService.sendVerificationLetter(verificationLetter);
     }
 
     @SneakyThrows
@@ -87,6 +90,28 @@ public class VerificationServiceImpl implements VerificationService {
             }
         } else {
             return VerificationResult.INVALID_TOKEN;
+        }
+    }
+
+    @Override
+    public VerificationStatus resendLetter(String email) {
+        Optional<User> userByEmail = userRepository.findByEmail(email);
+
+        if (userByEmail.isPresent()) {
+            User user = userByEmail.get();
+            if (!user.isActive()) {
+                Optional<Verification> v = verificationRepository.findByUserId(user.getId());
+                if (v.isPresent()) {
+                    VerificationLetter vLetter = generateVerificationLetter(v.get(), user);
+                    return mailService.sendVerificationLetter(vLetter);
+                } else {
+                    return generateVerificationRecord(user);
+                }
+            } else {
+                return VerificationStatus.USER_ALREADY_VERIFIED;
+            }
+        } else {
+            return VerificationStatus.UNKNOWN_USER;
         }
     }
 }

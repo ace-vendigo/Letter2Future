@@ -15,4 +15,9 @@ public class VerificationController {
     public ResponseEntity<VerificationResult> activateUser(@PathVariable String token) {
         return new ResponseEntity<>(verificationService.activateUser(token), HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/resend/{email}", method = RequestMethod.GET)
+    public ResponseEntity<VerificationStatus> resendLetter(@PathVariable String email) {
+        return new ResponseEntity<>(verificationService.resendLetter(email), HttpStatus.OK);
+    }
 }

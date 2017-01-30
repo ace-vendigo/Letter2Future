@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.Optional;
 
 import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.isEmptyString;
@@ -19,11 +20,13 @@ public class VerificationServiceTest extends AbstractIntTest {
     private VerificationServiceImpl verificationService;
 
     @Test
-    public void generateVerificationInactiveUser() throws Exception {
+    public void initVerificationInactiveUser() throws Exception {
         user.setActive(false);
         userRepository.save(user);
-        Verification verification = verificationService.generateVerificationRecord(user).get();
-        assertThat(verification, allOf(
+        VerificationStatus result = verificationService.initVerification(user);
+        assertThat(result, equalTo(VerificationStatus.LETTER_SENT));
+        Optional<Verification> v = verificationRepository.findByUserId(user.getId());
+        assertThat(v.get(), allOf(
                 hasProperty("userId", notNullValue()),
                 hasProperty("token", not(isEmptyString())),
                 hasProperty("creationTime", notNullValue()),
@@ -32,16 +35,27 @@ public class VerificationServiceTest extends AbstractIntTest {
     }
 
     @Test
+    public void activateInactiveUser() throws Exception {
+        user.setActive(false);
+        userRepository.save(user);
+        VerificationStatus vs = verificationService.initVerification(user);
+        assertThat(vs, equalTo(VerificationStatus.LETTER_SENT));
+        Optional<Verification> v = verificationRepository.findByUserId(user.getId());
+        VerificationResult result = verificationService.activateUser(v.get().getToken());
+        assertThat(result, equalTo(VerificationResult.VERIFIED));
+    }
+
+    @Test
     public void generateVerificationActiveUser() throws Exception {
-        Optional<Verification> result = verificationService.generateVerificationRecord(user);
-        assertThat(result.isPresent(), is(false));
+        VerificationStatus result = verificationService.initVerification(user);
+        assertThat(result, equalTo(VerificationStatus.USER_ALREADY_VERIFIED));
     }
 
     @Test
     public void activateAlreadyActiveUser() throws Exception {
         user.setActive(false);
         userRepository.save(user);
-        verificationService.generateVerificationRecord(user);
+        verificationService.initVerification(user);
         user.setActive(true);
         userRepository.save(user);
         Verification verification = verificationRepository.findByUserId(user.getId()).get();
