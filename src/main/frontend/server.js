@@ -1,5 +1,6 @@
 const express = require('express'),
-    httpProxy = require('http-proxy');
+    httpProxy = require('http-proxy'),
+    path = require('path');
 
 let app = express();
 
@@ -22,6 +23,10 @@ function apiProxy(host, port) {
 
 app.use(express.static('../resources/static'));
 app.use(apiProxy('localhost', 8080));
+
+app.use(function (req, res) {
+    res.sendFile(path.resolve(__dirname + '/../resources/static/index.html'));
+});
 
 app.listen(3000, function () {
     console.log('Example app listening on port 3000!')
