@@ -47,13 +47,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/")
                 .and()
                 .authorizeRequests()
-                .antMatchers(
-                        "/",
-                        "/src/**",
-                        "/api/user/new",
-                        "/api/news")
-                .permitAll().
-                anyRequest().authenticated().and().
+                .antMatchers("/api/user/new").permitAll()
+                .antMatchers("/api/**").authenticated()
+                .anyRequest().permitAll()
+                .and().
                 csrf().csrfTokenRepository(csrfTokenRepository());
     }
 
