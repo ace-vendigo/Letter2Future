@@ -6,8 +6,10 @@ import '@angular/common';
 import '@angular/http';
 import '@angular/router';
 
-
+// RxJS
 import 'rxjs';
+
 import 'jquery/dist/jquery.min.js';
+
 import 'bootstrap/dist/js/bootstrap.min.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
