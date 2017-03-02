@@ -12,11 +12,17 @@ module.exports = {
 
     output: {
         path: './../resources/static/src',
-        filename: '[name].js'
+        publicPath: '/src',
+        filename: '[name].js',
+        chunkFilename: '[id].chunk.js'
     },
 
     resolve: {
         extensions: ['', '.ts', '.js']
+    },
+
+    htmlLoader: {
+        minimize: false
     },
 
     module: {
@@ -50,12 +56,10 @@ module.exports = {
         new webpack.optimize.CommonsChunkPlugin({
             name: ['app', 'vendor', 'polyfills']
         }),
-
         new HtmlWebpackPlugin({
             template: './src/index.html',
             filename: './../index.html'
         }),
-
         new ExtractTextPlugin('[name].css')
     ]
 };

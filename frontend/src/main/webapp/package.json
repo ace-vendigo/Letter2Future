@@ -2,6 +2,7 @@
   "name": "l2f-frontend",
   "version": "0.0.1",
   "scripts": {
+    "clean": "rimraf ../resources/static/*",
     "build": "rimraf ../resources/static/* && webpack --progress --profile"
   },
   "dependencies": {
