@@ -1,6 +1,12 @@
+## Idea
 *.iml
 .idea
+
+## Maven
 **/target/
 
+## NPM
+/frontend/src/main/webapp/node_modules
+/frontend/src/main/resources/static
 **/npm-debug.log
 
