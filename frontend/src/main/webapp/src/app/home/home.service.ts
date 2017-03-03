@@ -4,8 +4,8 @@ import { API_PATH } from "../app.config";
 
 @Injectable()
 export class HomeService {
-    private newsRoute = API_PATH + "/news";
-    private news: any;
+    private newsRoute = API_PATH + "news";
+    private news: string;
     
     constructor(private http: Http) {
         this.getNews();
@@ -15,7 +15,7 @@ export class HomeService {
         if (!this.news) {
             let newsResponse: Response = await this.http.get(this.newsRoute).toPromise();
 
-            this.news = newsResponse.json().news;
+            this.news = newsResponse.text();
         }
 
         return this.news;

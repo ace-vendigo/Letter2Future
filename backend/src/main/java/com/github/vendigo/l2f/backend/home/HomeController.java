@@ -1,13 +1,14 @@
 package com.github.vendigo.l2f.backend.home;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 public class HomeController {
-    @RequestMapping(value = "/letters", method = RequestMethod.GET)
-    public String letters() {
-        return "redirect:index.html";
+    @GetMapping(value = "/news")
+    public ResponseEntity<String> news() {
+        return new ResponseEntity<>("Hot news!", HttpStatus.OK);
     }
 }

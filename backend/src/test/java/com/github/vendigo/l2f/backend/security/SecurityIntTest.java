@@ -2,7 +2,6 @@ package com.github.vendigo.l2f.backend.security;
 
 import com.github.vendigo.l2f.backend.AbstractIntTest;
 import com.github.vendigo.l2f.backend.user.User;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -18,19 +17,9 @@ import static org.hamcrest.Matchers.notNullValue;
 
 public class SecurityIntTest extends AbstractIntTest {
 
-    @Ignore
     @Test
-    public void homePageIsAvailableWithoutLogin() throws Exception {
-        ResponseEntity<String> response = template.getForEntity(buildUrl("/"), String.class);
-        assertThat(response.getStatusCode(), equalTo(HttpStatus.OK));
-        assertThat(response.getBody(), notNullValue());
-    }
-
-    @Ignore
-    @Test
-    public void frontendPathIsOpen() throws Exception {
-        ResponseEntity<String> response = template.getForEntity(buildUrl("/letters"), String.class);
-        System.out.println(response);
+    public void newsAreAvailableWithoutLogin() throws Exception {
+        ResponseEntity<String> response = template.getForEntity(buildUrl("news"), String.class);
         assertThat(response.getStatusCode(), equalTo(HttpStatus.OK));
         assertThat(response.getBody(), notNullValue());
     }
@@ -38,28 +27,20 @@ public class SecurityIntTest extends AbstractIntTest {
     @Test
     public void registrationIsAvailableWithoutLogin() throws Exception {
         User user = new User("test", "test@meta.ua", "password");
-        ResponseEntity<String> response = post("api/user/new", user, String.class);
+        ResponseEntity<String> response = post("user/new", user, String.class);
         assertThat(response.getStatusCode(), equalTo(HttpStatus.OK));
     }
 
     @Test
     public void csrfProtectionIsEnabled() throws Exception {
         User user = new User("test", "test@meta.ua", "password");
-        ResponseEntity<String> response = template.postForEntity(buildUrl("api/user/new"), user, String.class);
+        ResponseEntity<String> response = template.postForEntity(buildUrl("user/new"), user, String.class);
         assertThat(response.getStatusCode(), equalTo(HttpStatus.FORBIDDEN));
-    }
-
-    @Ignore
-    @Test
-    public void staticResourcesAreAvailableWithoutLogin() throws Exception {
-        ResponseEntity<String> response = template.getForEntity(buildUrl("src/app.js"), String.class);
-        assertThat(response.getStatusCode(), equalTo(HttpStatus.OK));
-        assertThat(response.getBody(), notNullValue());
     }
 
     @Test
     public void userEndpointIsSecured() throws Exception {
-        ResponseEntity<String> response = template.getForEntity(buildUrl("api/user"), String.class);
+        ResponseEntity<String> response = template.getForEntity(buildUrl("user"), String.class);
         assertThat(response.getStatusCode(), equalTo(HttpStatus.UNAUTHORIZED));
     }
 
@@ -72,14 +53,14 @@ public class SecurityIntTest extends AbstractIntTest {
     @Test
     public void logoutIsSuccess() throws Exception {
         HttpEntity<Object> httpEntity = new HttpEntity<>(performLogin());
-        ResponseEntity<Map> response = template.exchange(buildUrl("/api/logout"), HttpMethod.POST, httpEntity, Map.class);
+        ResponseEntity<Map> response = template.exchange(buildUrl("logout"), HttpMethod.POST, httpEntity, Map.class);
         assertThat(response.getStatusCode(), equalTo(HttpStatus.FOUND));
     }
 
     @Test
     public void userEndpointIsAvailableAfterLogin() throws Exception {
         HttpEntity<Object> httpEntity = new HttpEntity<>(performLogin());
-        ResponseEntity<Map> response = template.exchange(buildUrl("/api/user"), HttpMethod.GET, httpEntity, Map.class);
+        ResponseEntity<Map> response = template.exchange(buildUrl("user"), HttpMethod.GET, httpEntity, Map.class);
         assertThat(response.getStatusCode(), equalTo(HttpStatus.OK));
         assertThat(response.getBody().get("authenticated"), is(true));
     }

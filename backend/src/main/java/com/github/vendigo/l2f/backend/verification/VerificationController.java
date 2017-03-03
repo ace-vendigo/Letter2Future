@@ -6,17 +6,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/verification")
+@RequestMapping("verification")
 public class VerificationController {
     @Autowired
     VerificationService verificationService;
 
-    @RequestMapping(value = "/activate/{token}", method = RequestMethod.GET)
+    @GetMapping(value = "/activate/{token}")
     public ResponseEntity<VerificationResult> activateUser(@PathVariable String token) {
         return new ResponseEntity<>(verificationService.activateUser(token), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/resend/{email}", method = RequestMethod.GET)
+    @GetMapping(value = "/resend/{email}")
     public ResponseEntity<VerificationStatus> resendLetter(@PathVariable String email) {
         return new ResponseEntity<>(verificationService.resendLetter(email), HttpStatus.OK);
     }

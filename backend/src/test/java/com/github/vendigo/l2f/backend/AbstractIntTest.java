@@ -65,6 +65,6 @@ public abstract class AbstractIntTest {
         HttpHeaders headers = new HttpHeaders();
         headers.set("X-XSRF-TOKEN", "test_csrf_token");
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(body, headers);
-        return template.postForEntity(buildUrl("api/login"), request, String.class);
+        return template.postForEntity(buildUrl("login"), request, String.class);
     }
 }
