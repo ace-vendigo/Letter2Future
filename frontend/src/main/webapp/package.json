@@ -1,16 +1,20 @@
 {
-  "name": "Angular2-seed-test",
-  "version": "1.0.0",
-  "description": "Simple Angular 2 seed project with webpack",
-  "main": "index.js",
-  "scripts": {
-    "start": "node server.js",
-    "test": "karma start",
-    "build": "rimraf ../resources/static/* && webpack --progress --profile"
+  "name": "letter2future-frontend",
+  "version": "0.0.1",
+  "description": "Front end for project Letter to future",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vendigo/letter2Future.git"
   },
-  "keywords": [],
-  "author": "",
+  "contributors": [
+    "Dmytro Marchenko",
+    "Roman Karpovych"
+  ],
   "license": "ISC",
+  "scripts": {
+    "build": "rimraf ../resources/static/* && webpack --progress --profile",
+    "clean": "rimraf ../resources/static/*"
+  },
   "dependencies": {
     "@angular/common": "^2.4.4",
     "@angular/compiler": "^2.4.4",
@@ -32,7 +36,6 @@
   },
   "devDependencies": {
     "@types/core-js": "0.9.34",
-    "@types/jasmine": "2.5.35",
     "@types/node": "6.0.45",
     "angular2-template-loader": "0.4.0",
     "awesome-typescript-loader": "2.2.4",
@@ -41,13 +44,6 @@
     "file-loader": "0.8.5",
     "html-loader": "0.4.3",
     "html-webpack-plugin": "2.15.0",
-    "jasmine-core": "2.4.1",
-    "karma": "1.2.0",
-    "karma-chrome-launcher": "2.0.0",
-    "karma-jasmine": "1.0.2",
-    "karma-phantomjs-launcher": "1.0.2",
-    "karma-sourcemap-loader": "0.3.7",
-    "karma-webpack": "1.8.0",
     "null-loader": "0.1.1",
     "phantomjs-prebuilt": "2.1.7",
     "raw-loader": "0.5.1",
