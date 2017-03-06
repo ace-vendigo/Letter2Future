@@ -25,8 +25,8 @@ public class SecurityIntTest extends AbstractIntTest {
     }
 
     @Test
-    public void frontendPathIsOpen() throws Exception {
-        ResponseEntity<String> response = template.getForEntity(buildUrl("/letters"), String.class);
+    public void newsPathIsOpen() throws Exception {
+        ResponseEntity<String> response = template.getForEntity(buildUrl("api/news"), String.class);
         System.out.println(response);
         assertThat(response.getStatusCode(), equalTo(HttpStatus.OK));
         assertThat(response.getBody(), notNullValue());
