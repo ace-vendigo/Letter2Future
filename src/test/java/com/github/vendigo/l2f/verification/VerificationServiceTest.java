@@ -29,7 +29,7 @@ public class VerificationServiceTest extends AbstractIntTest {
         assertThat(v.get(), allOf(
                 hasProperty("userId", notNullValue()),
                 hasProperty("token", not(isEmptyString())),
-                hasProperty("creationTime", notNullValue()),
+                hasProperty("creationDate", notNullValue()),
                 hasProperty("verified", is(false))
         ));
     }

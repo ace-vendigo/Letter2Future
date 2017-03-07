@@ -21,14 +21,14 @@ public class Verification {
     @Column
     private String token;
     @Column
-    private LocalDate creationTime;
+    private LocalDate creationDate;
     @Column
     private Boolean verified;
 
     public Verification(Long userId, String verificationToken) {
         this.userId = userId;
         this.token = verificationToken;
-        this.creationTime = LocalDate.now();
+        this.creationDate = LocalDate.now();
         this.verified = false;
     }
 }
