@@ -1,8 +1,3 @@
-@font-face {
-    font-family: windsong;
-    src: url(../../fonts/windsong.ttf);
-}
-
 @media all and (max-width: 499px) {
     body {
         font-size: 12px;
@@ -34,7 +29,6 @@
 }
 
 .l2f_logo {
-    font-family: windsong;
     font-size: 5em;
     text-align: center;
 }

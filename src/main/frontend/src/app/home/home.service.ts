@@ -15,7 +15,7 @@ export class HomeService {
         if (!this.news) {
             let newsResponse: Response = await this.http.get(this.newsRoute).toPromise();
 
-            this.news = newsResponse.json().news;
+            this.news = newsResponse.text();
         }
 
         return this.news;

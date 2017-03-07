@@ -3,22 +3,11 @@ import { BrowserModule }  from '@angular/platform-browser';
 import { HttpModule } from "@angular/http";
 import { ReactiveFormsModule } from "@angular/forms";
 
-// App
 import { AppComponent } from './app.component';
-
-// Routing
 import { appRoutes } from "./app.routing";
-
-// Shared
 import { SharedModule } from "./shared/index";
-
-// Authentication
 import { AuthenticationModule } from "./authentication/index";
-
-// Home
 import { HomeModule } from "./home/index";
-
-// Letters
 import { LettersModule } from "./letters/index";
 import { RouterModule } from "@angular/router";
 

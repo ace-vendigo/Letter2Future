@@ -1,4 +1,4 @@
-package com.github.vendigo.l2f;
+package com.github.vendigo.l2f.config;
 
 import com.github.vendigo.l2f.mail.MailService;
 import com.github.vendigo.l2f.mail.MailServiceImpl;

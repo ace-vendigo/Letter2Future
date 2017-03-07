@@ -48,7 +48,7 @@ public class SecurityIntTest extends AbstractIntTest {
 
     @Test
     public void staticResourcesAreAvailableWithoutLogin() throws Exception {
-        ResponseEntity<String> response = template.getForEntity(buildUrl("src/app.js"), String.class);
+        ResponseEntity<String> response = template.getForEntity(buildUrl("resources/src/app.js"), String.class);
         assertThat(response.getStatusCode(), equalTo(HttpStatus.OK));
         assertThat(response.getBody(), notNullValue());
     }
